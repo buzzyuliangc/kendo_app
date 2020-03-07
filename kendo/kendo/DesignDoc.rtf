@@ -1,5 +1,104 @@
-{\rtf1\ansi\ansicpg1252\cocoartf949
-{\fonttbl}
+{\rtf1\ansi\ansicpg1252\cocoartf2511
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;}
 {\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
 \margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 A rough outline of the design for the application overall.\
+\
+\
+Classes:\
+LandingView\
+WorkoutView\
+PlanSelectionView\
+PlanEditorView\
+LandingViewController\
+WorkoutViewController\
+ - The main functionality of the program, a workout that has some kind of visual accompanied by a counter\
+ - Should have a pause button, upon pausing should have a stop option\
+ - Should have main visuals in the upper center\
+ - Should have a timer displaying the time elapsed for the workout\
+ - Should have a counter showing how many swings have been completed out of the total number of swings for the given form\
+ - Should have a timer that shows over the main visual during a rest period, counting down from the post-form rest time\
+ - Possibly add a progress bar for the form at the bottom of the visual??\
+PlanSelectionViewController\
+ - Should maintain a UITableView (possibly a different object) of workout plans\
+	 - Table populated by the users list of workout plans\
+	 - Each workout name should be the displayed entry\
+	 - Upon selecting one, it changes the selected workout plan (*should this be global or should this be stored locally and passed back to main menu upon closing out)\
+		It shouldn't have any other action, the transition to edit or back to main menu should be handled by other buttons\
+	 - An edit button should transition to the plan editor view controller, passing the workout plan as\
+PlanEditorViewController\
+ - Primary job is to build the selected workout plan\
+ - Should be initiated with the given workout plan\
+ - Should load the workout plan if it exists, or start with a blank one if it's a new plan\
+ - Should have a set of fields at the bottom of the page for modifying\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0  - Should maintain a UITableView of the forms associated with the plan\
+	 - When one is tapped it should load the parameters into the edit fields at the bottom\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0  - Should have a button to add a new form that is created and selected, set with default values\
+ - Should have a save button that returns to the selection view controller\
+ - Should have a delete button that deletes the selected form\
+ - Attempting to save an empty workout should cause a popup error\
+\
+Objects:\
+WorkoutFormEntry - An object representing a singular form entry in a workout plan\
+	Stores: Swing Form, Frequency, Rest Time, Parent Workout\
+\
+WorkoutObject - An object representing a singular workout plan comprised of many forms in a specific order\
+	 - Name\
+	 - Unique identifier\
+		 - In case a different workout shares the same name, could otherwise perform a check and enforce uniqueness to the name\
+	 - List of form entries\
+\
+Global Trackers For Metrics:\
+	 - Probably some kind of table or multiple tables to track stats for the user\
+	 - Perhaps simply a list of completed workouts that's then taken and computed by the stats page\
+	 - 
+\f1\b Possibly would be better to create a dummy workout while a workout is in progress, and then add that when the workout is exited, that way partial workouts are tracked\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\b0 \cf0 Counter Objects?\
+\
+UIObjects:\
+We'll need to create various UI objects depending on how complicated the visual designs we want are\
+Custom Keypad Toolbar\
+	 - Need to add a simple button to the toolbar for the \
+\
+Static Objects:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Frequency Table\
+	 - Needs to be a statically defined table for each swing mapped to 5 different swing frequencies\
+	 - Could a\
+Suburi/Form List\
+	 - Name of forms\
+	 - The different stances that make up a single swing, so that the workout can properly count out\
+Audio Assets\
+	 - Form counts\
+\
+\
+\
+Post SwiftUI Research Thoughts:\
+So we want to have stores that are bindable objects for the \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
 }

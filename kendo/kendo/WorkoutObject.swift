@@ -7,3 +7,34 @@
 //
 
 import Foundation
+
+class WorkoutObject: NSObject {
+    var forms: Array<WorkoutFormEntry>
+    var name: String //NSString??
+    
+    override init() {
+        self.forms = Array.init()
+        self.name = String.init()
+    }
+    
+    func getForm(formIndex: Int) -> WorkoutFormEntry{
+        return forms[formIndex]
+    }
+    
+    func getForms() -> Array<WorkoutFormEntry>{
+        return forms
+    }
+    
+    func addForm(form: WorkoutFormEntry) -> Void {
+        forms.append(form)
+    }
+    
+    func getName() -> String {
+        return name
+    }
+    
+    func setName(name: String) {
+        self.name = name
+    }
+    
+}

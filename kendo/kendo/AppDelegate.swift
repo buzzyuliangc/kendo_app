@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        //TODO: check to see if a workout list object exists in the NSUserDefaults (or equivalent)
+        //      and if one doesn't, create a default one
         return true
     }
 

@@ -16,6 +16,13 @@
 		49620F1524010E0C00C5F4B8 /* kendoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49620F1424010E0C00C5F4B8 /* kendoTests.swift */; };
 		49620F2024010E0C00C5F4B8 /* kendoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49620F1F24010E0C00C5F4B8 /* kendoUITests.swift */; };
 		49620F2E24013D2A00C5F4B8 /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49620F2D24013D2A00C5F4B8 /* main.storyboard */; };
+		C5B0B9CE24138110002F1F1E /* WorkoutFormEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9CD24138110002F1F1E /* WorkoutFormEntry.swift */; };
+		C5B0B9D024138182002F1F1E /* WorkoutObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9CF24138182002F1F1E /* WorkoutObject.swift */; };
+		C5B0B9D4241384F1002F1F1E /* DesignDoc.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C5B0B9D3241384F1002F1F1E /* DesignDoc.rtf */; };
+		C5B0B9D62414334C002F1F1E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9D52414334C002F1F1E /* MainView.swift */; };
+		C5B0B9D82414393F002F1F1E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9D72414393F002F1F1E /* MainViewController.swift */; };
+		C5B0B9DA24143F0A002F1F1E /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9D924143F0A002F1F1E /* WorkoutView.swift */; };
+		C5B0B9DC2414462C002F1F1E /* ActiveWorkoutStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9DB2414462C002F1F1E /* ActiveWorkoutStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +58,13 @@
 		49620F1F24010E0C00C5F4B8 /* kendoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kendoUITests.swift; sourceTree = "<group>"; };
 		49620F2124010E0C00C5F4B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49620F2D24013D2A00C5F4B8 /* main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = main.storyboard; sourceTree = "<group>"; };
+		C5B0B9CD24138110002F1F1E /* WorkoutFormEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutFormEntry.swift; sourceTree = "<group>"; };
+		C5B0B9CF24138182002F1F1E /* WorkoutObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutObject.swift; sourceTree = "<group>"; };
+		C5B0B9D3241384F1002F1F1E /* DesignDoc.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = DesignDoc.rtf; sourceTree = "<group>"; };
+		C5B0B9D52414334C002F1F1E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		C5B0B9D72414393F002F1F1E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		C5B0B9D924143F0A002F1F1E /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
+		C5B0B9DB2414462C002F1F1E /* ActiveWorkoutStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +118,13 @@
 				49620EFD24010E0900C5F4B8 /* AppDelegate.swift */,
 				49620EFF24010E0900C5F4B8 /* SceneDelegate.swift */,
 				49620F0124010E0900C5F4B8 /* ContentView.swift */,
+				C5B0B9D52414334C002F1F1E /* MainView.swift */,
+				C5B0B9D924143F0A002F1F1E /* WorkoutView.swift */,
+				C5B0B9DB2414462C002F1F1E /* ActiveWorkoutStore.swift */,
+				C5B0B9D72414393F002F1F1E /* MainViewController.swift */,
+				C5B0B9CD24138110002F1F1E /* WorkoutFormEntry.swift */,
+				C5B0B9D3241384F1002F1F1E /* DesignDoc.rtf */,
+				C5B0B9CF24138182002F1F1E /* WorkoutObject.swift */,
 				49620F0324010E0C00C5F4B8 /* Assets.xcassets */,
 				49620F0824010E0C00C5F4B8 /* LaunchScreen.storyboard */,
 				49620F0B24010E0C00C5F4B8 /* Info.plist */,
@@ -245,6 +266,7 @@
 			files = (
 				49620F0A24010E0C00C5F4B8 /* LaunchScreen.storyboard in Resources */,
 				49620F0724010E0C00C5F4B8 /* Preview Assets.xcassets in Resources */,
+				C5B0B9D4241384F1002F1F1E /* DesignDoc.rtf in Resources */,
 				49620F0424010E0C00C5F4B8 /* Assets.xcassets in Resources */,
 				49620F2E24013D2A00C5F4B8 /* main.storyboard in Resources */,
 			);
@@ -271,9 +293,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5B0B9D82414393F002F1F1E /* MainViewController.swift in Sources */,
+				C5B0B9D024138182002F1F1E /* WorkoutObject.swift in Sources */,
+				C5B0B9DA24143F0A002F1F1E /* WorkoutView.swift in Sources */,
+				C5B0B9D62414334C002F1F1E /* MainView.swift in Sources */,
 				49620EFE24010E0900C5F4B8 /* AppDelegate.swift in Sources */,
 				49620F0024010E0900C5F4B8 /* SceneDelegate.swift in Sources */,
+				C5B0B9CE24138110002F1F1E /* WorkoutFormEntry.swift in Sources */,
 				49620F0224010E0900C5F4B8 /* ContentView.swift in Sources */,
+				C5B0B9DC2414462C002F1F1E /* ActiveWorkoutStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
