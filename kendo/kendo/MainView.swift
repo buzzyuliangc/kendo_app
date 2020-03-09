@@ -25,13 +25,13 @@ struct MainView: View {
         
         return VStack {
             Spacer()
-            Text("Kendo Time!").bold()
-            Spacer()
+            Text("Kendo Time!").font(.largeTitle).foregroundColor(Color.gray)
+            Spacer().frame(height:460)
             HStack {
                 //TOOD: I think instead of a text field we want to have a custom text object or button with a box defined around it that takes them to the selection page when pressed
 //                TextField("Workout Placeholder", text: enteredText)
                 Spacer()
-                Text("\(workout.getName())")
+                Text("\(workout.getName())").foregroundColor(Color.white)
                 Button(action: {
                     self.showingWorkout.toggle()
                 }) {
@@ -53,7 +53,7 @@ struct MainView: View {
         //                    WorkoutView(workout: workout, activeWorkout: activeWorkout)
             WorkoutView(workout: workout, activeWorkout: activeWorkout)
             
-        }
+        }.background(MainBackground())
         
     }
 }

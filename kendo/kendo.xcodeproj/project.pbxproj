@@ -16,6 +16,7 @@
 		49620F1524010E0C00C5F4B8 /* kendoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49620F1424010E0C00C5F4B8 /* kendoTests.swift */; };
 		49620F2024010E0C00C5F4B8 /* kendoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49620F1F24010E0C00C5F4B8 /* kendoUITests.swift */; };
 		49620F2E24013D2A00C5F4B8 /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49620F2D24013D2A00C5F4B8 /* main.storyboard */; };
+		49EB52AF24160F6700CCE1FD /* MainBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB52AE24160F6700CCE1FD /* MainBackground.swift */; };
 		C5B0B9CE24138110002F1F1E /* WorkoutFormEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9CD24138110002F1F1E /* WorkoutFormEntry.swift */; };
 		C5B0B9D024138182002F1F1E /* WorkoutObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9CF24138182002F1F1E /* WorkoutObject.swift */; };
 		C5B0B9D4241384F1002F1F1E /* DesignDoc.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C5B0B9D3241384F1002F1F1E /* DesignDoc.rtf */; };
@@ -60,6 +61,7 @@
 		49620F1F24010E0C00C5F4B8 /* kendoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kendoUITests.swift; sourceTree = "<group>"; };
 		49620F2124010E0C00C5F4B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49620F2D24013D2A00C5F4B8 /* main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = main.storyboard; sourceTree = "<group>"; };
+		49EB52AE24160F6700CCE1FD /* MainBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBackground.swift; sourceTree = "<group>"; };
 		C5B0B9CD24138110002F1F1E /* WorkoutFormEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutFormEntry.swift; sourceTree = "<group>"; };
 		C5B0B9CF24138182002F1F1E /* WorkoutObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutObject.swift; sourceTree = "<group>"; };
 		C5B0B9D3241384F1002F1F1E /* DesignDoc.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = DesignDoc.rtf; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				49620F0B24010E0C00C5F4B8 /* Info.plist */,
 				49620F0524010E0C00C5F4B8 /* Preview Content */,
 				49620F2D24013D2A00C5F4B8 /* main.storyboard */,
+				49EB52AE24160F6700CCE1FD /* MainBackground.swift */,
 			);
 			path = kendo;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				49620EFE24010E0900C5F4B8 /* AppDelegate.swift in Sources */,
 				49620F0024010E0900C5F4B8 /* SceneDelegate.swift in Sources */,
 				C5B0B9E02415EC18002F1F1E /* PausedLabel.swift in Sources */,
+				49EB52AF24160F6700CCE1FD /* MainBackground.swift in Sources */,
 				C5B0B9CE24138110002F1F1E /* WorkoutFormEntry.swift in Sources */,
 				49620F0224010E0900C5F4B8 /* ContentView.swift in Sources */,
 				C5B0B9DC2414462C002F1F1E /* ActiveWorkoutStore.swift in Sources */,

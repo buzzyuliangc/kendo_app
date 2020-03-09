@@ -24,37 +24,38 @@ struct WorkoutView: View {
             //            if isActive {
             //                Text("Paused")
             //            }
+            
+            
+            
+            
+            
+            Spacer().frame(height:160)
+            Text("\(Int(self.activeWorkout.elapsedTime) / 60):\(Int(self.activeWorkout.elapsedTime) % 60 / 10)\(Int(self.activeWorkout.elapsedTime) % 10)").padding(EdgeInsets(top: 250, leading: 300, bottom: 0, trailing: 0))
             HStack() {
                 if(isActive) {
-                    Text("Paused").bold().hidden()
+                    Text("Paused").font(.largeTitle).hidden()
                 } else {
-                    Text("Paused").bold()
+                    Text("Paused").font(.largeTitle).foregroundColor(Color.red)
                 }
             }
-            Spacer().frame(height: 40)
-            
             if(self.activeWorkout.resting) {
                 //                var remainingRest =
                 HStack {
-                    Text("Resting").bold()
-                    Text("\(Int(self.activeWorkout.restTime - Int(self.activeWorkout.runningTime)) / 60):\(Int(self.activeWorkout.restTime - Int(self.activeWorkout.runningTime)) % 60 / 10)\(Int(self.activeWorkout.restTime - Int(self.activeWorkout.runningTime)) % 10)")
+                    Text("Resting").bold().foregroundColor(Color.white)
+                    Text("\(Int(self.activeWorkout.restTime - Int(self.activeWorkout.runningTime)) / 60):\(Int(self.activeWorkout.restTime - Int(self.activeWorkout.runningTime)) % 60 / 10)\(Int(self.activeWorkout.restTime - Int(self.activeWorkout.runningTime)) % 10)").foregroundColor(Color.white)
                 }
             } else {
                 Text("Resting Placeholder").hidden()
             }
             
-            Spacer().frame(height:20)
-            Text("\(Int(self.activeWorkout.elapsedTime) / 60):\(Int(self.activeWorkout.elapsedTime) % 60 / 10)\(Int(self.activeWorkout.elapsedTime) % 10)")
-            
             HStack{
                 Text(verbatim: self.activeWorkout.formName)
                 
                 Text(verbatim: "\(String(self.activeWorkout.swingNum))" + "/" + "\(String(self.activeWorkout.swingMax))")
-            }
+            }.padding(EdgeInsets(top: 300, leading: 300, bottom: 0, trailing: 0))
             HStack {
                 Text(verbatim: "Suburi \(self.activeWorkout.formIndex+1)/\(self.activeWorkout.numForms)")
-            }
-            
+            }.padding(EdgeInsets(top: 0, leading: 300, bottom: 0, trailing: 0))
             Button<HStack>(action: {
                 self.activeWorkout.toggle()
                 self.isActive.toggle()
@@ -66,7 +67,7 @@ struct WorkoutView: View {
                         Text("Pause")
                     }
                 }
-            }
+            }.padding(EdgeInsets(top: 300, leading: 0, bottom: 0, trailing: 0))
             
             if(!self.isActive) {
                 Button(action: {
@@ -81,9 +82,9 @@ struct WorkoutView: View {
                     Text("Quit")
                 }.hidden()
             }
-            
-            
-        }
+        }.background(Image("suburi").resizable()
+            .frame(width: 420.0,height:500)).offset(y:-230)
+        
     }
 }
 
