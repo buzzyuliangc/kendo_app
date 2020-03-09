@@ -96,10 +96,10 @@ class ActiveWorkoutStore: ObservableObject {
     }
     
     func incForm() {
-        self.formIndex += 1
-        self.runningTime = 0.0
-        self.swingNum = 0
         if(self.formIndex < workout.getForms().count) {
+            self.formIndex += 1
+            self.runningTime = 0.0
+            self.swingNum = 0
             loadForm(newForm: workout.getForm(formIndex: self.formIndex))
         }
     }

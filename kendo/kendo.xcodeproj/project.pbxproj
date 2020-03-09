@@ -23,6 +23,8 @@
 		C5B0B9D82414393F002F1F1E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9D72414393F002F1F1E /* MainViewController.swift */; };
 		C5B0B9DA24143F0A002F1F1E /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9D924143F0A002F1F1E /* WorkoutView.swift */; };
 		C5B0B9DC2414462C002F1F1E /* ActiveWorkoutStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9DB2414462C002F1F1E /* ActiveWorkoutStore.swift */; };
+		C5B0B9E02415EC18002F1F1E /* PausedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9DF2415EC18002F1F1E /* PausedLabel.swift */; };
+		C5B0B9E22415F3B1002F1F1E /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9E12415F3B1002F1F1E /* PauseButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		C5B0B9D72414393F002F1F1E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C5B0B9D924143F0A002F1F1E /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		C5B0B9DB2414462C002F1F1E /* ActiveWorkoutStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutStore.swift; sourceTree = "<group>"; };
+		C5B0B9DF2415EC18002F1F1E /* PausedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PausedLabel.swift; sourceTree = "<group>"; };
+		C5B0B9E12415F3B1002F1F1E /* PauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,8 @@
 		49620EFC24010E0900C5F4B8 /* kendo */ = {
 			isa = PBXGroup;
 			children = (
+				C5B0B9DF2415EC18002F1F1E /* PausedLabel.swift */,
+				C5B0B9E12415F3B1002F1F1E /* PauseButton.swift */,
 				49620EFD24010E0900C5F4B8 /* AppDelegate.swift */,
 				49620EFF24010E0900C5F4B8 /* SceneDelegate.swift */,
 				49620F0124010E0900C5F4B8 /* ContentView.swift */,
@@ -293,12 +299,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5B0B9E22415F3B1002F1F1E /* PauseButton.swift in Sources */,
 				C5B0B9D82414393F002F1F1E /* MainViewController.swift in Sources */,
 				C5B0B9D024138182002F1F1E /* WorkoutObject.swift in Sources */,
 				C5B0B9DA24143F0A002F1F1E /* WorkoutView.swift in Sources */,
 				C5B0B9D62414334C002F1F1E /* MainView.swift in Sources */,
 				49620EFE24010E0900C5F4B8 /* AppDelegate.swift in Sources */,
 				49620F0024010E0900C5F4B8 /* SceneDelegate.swift in Sources */,
+				C5B0B9E02415EC18002F1F1E /* PausedLabel.swift in Sources */,
 				C5B0B9CE24138110002F1F1E /* WorkoutFormEntry.swift in Sources */,
 				49620F0224010E0900C5F4B8 /* ContentView.swift in Sources */,
 				C5B0B9DC2414462C002F1F1E /* ActiveWorkoutStore.swift in Sources */,
