@@ -10,7 +10,7 @@ import SwiftUI
 
 struct WorkoutView: View {
     @State var isActive: Bool = true
-    
+    @State var showingMain = false
     var workout: WorkoutObject
     
     
@@ -71,7 +71,7 @@ struct WorkoutView: View {
             
             if(!self.isActive) {
                 Button(action: {
-                    //ACTION TO POP VIEW
+                    self.showingMain.toggle()
                 }) {
                     Text("Quit")
                 }
@@ -82,6 +82,9 @@ struct WorkoutView: View {
                     Text("Quit")
                 }.hidden()
             }
+        }.sheet(isPresented: $showingMain) {
+            MainView()
+            
         }.background(Image("suburi").resizable()
             .frame(width: 420.0,height:500)).offset(y:-230)
         

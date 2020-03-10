@@ -11,6 +11,7 @@ import SwiftUI
 struct MainView: View {
     @State var showingMain = true
     @State var showingWorkout = false
+    @State var showingEditWorkout = false
     
     var body: some View {
         //        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
@@ -31,7 +32,12 @@ struct MainView: View {
                 //TOOD: I think instead of a text field we want to have a custom text object or button with a box defined around it that takes them to the selection page when pressed
 //                TextField("Workout Placeholder", text: enteredText)
                 Spacer()
-                Text("\(workout.getName())").foregroundColor(Color.white)
+                
+                Button(action: {
+                    self.showingEditWorkout.toggle()
+                }) {
+                    Text("\(workout.getName())").foregroundColor(Color.white)
+                }
                 Button(action: {
                     self.showingWorkout.toggle()
                 }) {
@@ -47,12 +53,14 @@ struct MainView: View {
                     Text("Reminders")
                 }
             }
-            Spacer()
-            Spacer()
+            //Spacer()
+            //Spacer()
         }.sheet(isPresented: $showingWorkout) {
         //                    WorkoutView(workout: workout, activeWorkout: activeWorkout)
             WorkoutView(workout: workout, activeWorkout: activeWorkout)
             
+        }.sheet(isPresented: $showingEditWorkout){
+            EditWorkoutView()
         }.background(MainBackground())
         
     }
