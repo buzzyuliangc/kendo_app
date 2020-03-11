@@ -8,14 +8,63 @@
 
 import SwiftUI
 
+/*struct Workout: Identifiable {
+  let id: Int
+  let name: String
+}*/
+
 struct EditWorkoutView: View {
+    @State var showingMain = false
+    @State var chosenWorkout: WorkoutObject
+    @ObservedObject var activeWorkout: ActiveWorkoutStore
+    
+    /*var workoutList = [
+      Workout(id: 0, name: "Workout0"),
+      Workout(id: 1, name: "Workout1"),
+      Workout(id: 2, name: "Workout2"),
+      Workout(id: 3, name: "Workout3"),
+      Workout(id: 4, name: "Workout4"),
+      Workout(id: 5, name: "Workout5"),
+      Workout(id: 6, name: "Workout6"),
+      Workout(id: 7, name: "Workout7"),
+    ]*/
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        var workoutList = [WorkoutObject]()
+        for i in 1...5{
+            let workout = WorkoutObject.init()
+            workout.setName(name: "Workout"+String(i))
+            workout.setId(id: i)
+            workoutList.append(workout)
+            workout.addForm(form: WorkoutFormEntry.init(form: "Form1", frequency: 1.5, restTime: 15, numSwings: 10, parentWorkout: workout))
+            workout.addForm(form: WorkoutFormEntry.init(form: "Form2", frequency: 0.5, restTime: 15, numSwings: 10, parentWorkout: workout))
+            workout.addForm(form: WorkoutFormEntry.init(form: "Form3", frequency: 2.5, restTime: 15, numSwings: 10, parentWorkout: workout))
+        }
+        
+        return NavigationView {
+          List(workoutList, id: \.id) { WorkoutObject in
+            HStack {
+              Button(action: {
+                  self.showingMain.toggle()
+                self.chosenWorkout = WorkoutObject
+              }) {
+                Text(WorkoutObject.getName())
+              }
+            }
+          }.navigationBarTitle(Text("All Workouts"))
+        }.sheet(isPresented: $showingMain){
+            MainView(workout: self.chosenWorkout)
+        }
     }
 }
 
 struct EditWorkoutView_Previews: PreviewProvider {
     static var previews: some View {
-        EditWorkoutView()
+        let workout = WorkoutObject.init()
+        workout.setName(name: "Workout1")
+        workout.addForm(form: WorkoutFormEntry.init(form: "Form1", frequency: 1.5, restTime: 15, numSwings: 10, parentWorkout: workout))
+        workout.addForm(form: WorkoutFormEntry.init(form: "Form2", frequency: 0.5, restTime: 15, numSwings: 10, parentWorkout: workout))
+        workout.addForm(form: WorkoutFormEntry.init(form: "Form3", frequency: 2.5, restTime: 15, numSwings: 10, parentWorkout: workout))
+        let activeWorkout = ActiveWorkoutStore.init(workout: workout)
+        return EditWorkoutView( chosenWorkout: workout,activeWorkout: activeWorkout)
     }
 }

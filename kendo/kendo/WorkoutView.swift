@@ -83,7 +83,7 @@ struct WorkoutView: View {
                 }.hidden()
             }
         }.sheet(isPresented: $showingMain) {
-            MainView()
+            MainView(workout: self.workout)
             
         }.background(Image("suburi").resizable()
             .frame(width: 420.0,height:500)).offset(y:-230)

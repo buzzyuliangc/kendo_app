@@ -12,16 +12,17 @@ struct MainView: View {
     @State var showingMain = true
     @State var showingWorkout = false
     @State var showingEditWorkout = false
-    
+    //@ObservedObject var activeWorkout: ActiveWorkoutStore
+    var workout: WorkoutObject
     var body: some View {
         //        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
         var enteredText: String
         
-        let workout = WorkoutObject.init()
+        /*let workout = WorkoutObject.init()
         workout.setName(name: "Workout1")
         workout.addForm(form: WorkoutFormEntry.init(form: "Form1", frequency: 1.0, restTime: 15, numSwings: 10, parentWorkout: workout))
         workout.addForm(form: WorkoutFormEntry.init(form: "Form2", frequency: 1.0, restTime: 15, numSwings: 10, parentWorkout: workout))
-        workout.addForm(form: WorkoutFormEntry.init(form: "Form3", frequency: 1.0, restTime: 15, numSwings: 10, parentWorkout: workout))
+        workout.addForm(form: WorkoutFormEntry.init(form: "Form3", frequency: 1.0, restTime: 15, numSwings: 10, parentWorkout: workout))*/
         let activeWorkout = ActiveWorkoutStore.init(workout: workout)
         
         return VStack {
@@ -35,6 +36,7 @@ struct MainView: View {
                 
                 Button(action: {
                     self.showingEditWorkout.toggle()
+                        
                 }) {
                     Text("\(workout.getName())").foregroundColor(Color.white)
                 }
@@ -57,17 +59,24 @@ struct MainView: View {
             //Spacer()
         }.sheet(isPresented: $showingWorkout) {
         //                    WorkoutView(workout: workout, activeWorkout: activeWorkout)
-            WorkoutView(workout: workout, activeWorkout: activeWorkout)
+            WorkoutView(workout: self.workout, activeWorkout: activeWorkout)
             
         }.sheet(isPresented: $showingEditWorkout){
-            EditWorkoutView()
+            EditWorkoutView(chosenWorkout: self.workout, activeWorkout: activeWorkout)
         }.background(MainBackground())
         
     }
 }
 
 struct MainView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        MainView()
+        let workout = WorkoutObject.init()
+        workout.setName(name: "Workout1")
+        workout.addForm(form: WorkoutFormEntry.init(form: "Form1", frequency: 1.5, restTime: 15, numSwings: 10, parentWorkout: workout))
+        workout.addForm(form: WorkoutFormEntry.init(form: "Form2", frequency: 0.5, restTime: 15, numSwings: 10, parentWorkout: workout))
+        workout.addForm(form: WorkoutFormEntry.init(form: "Form3", frequency: 2.5, restTime: 15, numSwings: 10, parentWorkout: workout))
+        //let activeWorkout = ActiveWorkoutStore.init(workout: workout)
+        return MainView(showingMain: true, showingWorkout: false, workout: workout)
     }
 }

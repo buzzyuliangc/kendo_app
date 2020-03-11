@@ -11,10 +11,12 @@ import Foundation
 class WorkoutObject: NSObject {
     var forms: Array<WorkoutFormEntry>
     var name: String //NSString??
+    var id: Int
     
     override init() {
         self.forms = Array.init()
         self.name = String.init()
+        self.id = Int.init()
     }
     
     func getForm(formIndex: Int) -> WorkoutFormEntry{
@@ -35,6 +37,14 @@ class WorkoutObject: NSObject {
     
     func setName(name: String) {
         self.name = name
+    }
+    
+    func getId() -> Int {
+        return id
+    }
+    
+    func setId(id: Int) {
+        self.id = id
     }
     
 }
