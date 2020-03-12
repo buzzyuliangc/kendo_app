@@ -9,10 +9,14 @@
 import SwiftUI
 
 struct NewWorkoutButton: View {
+    @State var showingDetailed = false
     var body: some View {
-        Button(action: {}) {
+        Button(action: {self.showingDetailed.toggle()}) {
           Text("New Workout")
-        }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+        }.sheet(isPresented: $showingDetailed) {
+                DetailWorkoutView()
+                
+            }
     }
 }
 

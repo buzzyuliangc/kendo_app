@@ -14,6 +14,7 @@ class WorkoutFormEntry {
     var restTime: Int //rest time after form
     var parentWorkout: WorkoutObject
     var numSwings: Int
+    var id: Int
     //TODO: decide how to store the differences between forms,
     //      if it's something to be looked up from the string or if it's something to be
     //      contained in it's own data structure
@@ -26,12 +27,13 @@ class WorkoutFormEntry {
 //        self.parentWorkout = nil;
 //    }
     
-    init(form: String, frequency: Double, restTime: Int, numSwings: Int, parentWorkout: WorkoutObject) {
+    init(form: String, frequency: Double, restTime: Int, numSwings: Int, parentWorkout: WorkoutObject, id:Int) {
         self.form = form;
         self.frequency = frequency
         self.restTime = restTime
         self.numSwings = numSwings
         self.parentWorkout = parentWorkout
+        self.id = id
     }
     
     func setNumSwings(numSwings: Int) {
@@ -72,6 +74,14 @@ class WorkoutFormEntry {
     
     func getParentWorkout() -> WorkoutObject {
         return self.parentWorkout
+    }
+    
+    func setId(id: Int) {
+        self.id = id
+    }
+    
+    func getId() -> Int {
+        return self.id
     }
     
     
