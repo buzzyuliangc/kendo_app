@@ -18,6 +18,9 @@
 		49620F2E24013D2A00C5F4B8 /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49620F2D24013D2A00C5F4B8 /* main.storyboard */; };
 		49EB52AF24160F6700CCE1FD /* MainBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB52AE24160F6700CCE1FD /* MainBackground.swift */; };
 		49EB52B12418199C00CCE1FD /* EditWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB52B02418199C00CCE1FD /* EditWorkoutView.swift */; };
+		49EB52B3241ABA9F00CCE1FD /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB52B2241ABA9F00CCE1FD /* DeleteButton.swift */; };
+		49EB52B5241AC12A00CCE1FD /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB52B4241AC12A00CCE1FD /* EditButton.swift */; };
+		49EB52B7241AC15D00CCE1FD /* NewWorkoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB52B6241AC15D00CCE1FD /* NewWorkoutButton.swift */; };
 		C5B0B9CE24138110002F1F1E /* WorkoutFormEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9CD24138110002F1F1E /* WorkoutFormEntry.swift */; };
 		C5B0B9D024138182002F1F1E /* WorkoutObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B0B9CF24138182002F1F1E /* WorkoutObject.swift */; };
 		C5B0B9D4241384F1002F1F1E /* DesignDoc.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C5B0B9D3241384F1002F1F1E /* DesignDoc.rtf */; };
@@ -64,6 +67,9 @@
 		49620F2D24013D2A00C5F4B8 /* main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = main.storyboard; sourceTree = "<group>"; };
 		49EB52AE24160F6700CCE1FD /* MainBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBackground.swift; sourceTree = "<group>"; };
 		49EB52B02418199C00CCE1FD /* EditWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkoutView.swift; sourceTree = "<group>"; };
+		49EB52B2241ABA9F00CCE1FD /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
+		49EB52B4241AC12A00CCE1FD /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
+		49EB52B6241AC15D00CCE1FD /* NewWorkoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutButton.swift; sourceTree = "<group>"; };
 		C5B0B9CD24138110002F1F1E /* WorkoutFormEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutFormEntry.swift; sourceTree = "<group>"; };
 		C5B0B9CF24138182002F1F1E /* WorkoutObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutObject.swift; sourceTree = "<group>"; };
 		C5B0B9D3241384F1002F1F1E /* DesignDoc.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = DesignDoc.rtf; sourceTree = "<group>"; };
@@ -142,6 +148,9 @@
 				49620F2D24013D2A00C5F4B8 /* main.storyboard */,
 				49EB52AE24160F6700CCE1FD /* MainBackground.swift */,
 				49EB52B02418199C00CCE1FD /* EditWorkoutView.swift */,
+				49EB52B2241ABA9F00CCE1FD /* DeleteButton.swift */,
+				49EB52B4241AC12A00CCE1FD /* EditButton.swift */,
+				49EB52B6241AC15D00CCE1FD /* NewWorkoutButton.swift */,
 			);
 			path = kendo;
 			sourceTree = "<group>";
@@ -307,13 +316,16 @@
 			files = (
 				C5B0B9E22415F3B1002F1F1E /* PauseButton.swift in Sources */,
 				C5B0B9D82414393F002F1F1E /* MainViewController.swift in Sources */,
+				49EB52B7241AC15D00CCE1FD /* NewWorkoutButton.swift in Sources */,
 				C5B0B9D024138182002F1F1E /* WorkoutObject.swift in Sources */,
 				C5B0B9DA24143F0A002F1F1E /* WorkoutView.swift in Sources */,
+				49EB52B3241ABA9F00CCE1FD /* DeleteButton.swift in Sources */,
 				49EB52B12418199C00CCE1FD /* EditWorkoutView.swift in Sources */,
 				C5B0B9D62414334C002F1F1E /* MainView.swift in Sources */,
 				49620EFE24010E0900C5F4B8 /* AppDelegate.swift in Sources */,
 				49620F0024010E0900C5F4B8 /* SceneDelegate.swift in Sources */,
 				C5B0B9E02415EC18002F1F1E /* PausedLabel.swift in Sources */,
+				49EB52B5241AC12A00CCE1FD /* EditButton.swift in Sources */,
 				49EB52AF24160F6700CCE1FD /* MainBackground.swift in Sources */,
 				C5B0B9CE24138110002F1F1E /* WorkoutFormEntry.swift in Sources */,
 				49620F0224010E0900C5F4B8 /* ContentView.swift in Sources */,

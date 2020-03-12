@@ -41,6 +41,8 @@ struct EditWorkoutView: View {
         }
         
         return NavigationView {
+            VStack{
+            HStack{
           List(workoutList, id: \.id) { WorkoutObject in
             HStack {
               Button(action: {
@@ -49,8 +51,22 @@ struct EditWorkoutView: View {
               }) {
                 Text(WorkoutObject.getName())
               }
+              //DeleteButton()
             }
           }.navigationBarTitle(Text("All Workouts"))
+        List(workoutList, id: \.id) { WorkoutObject in
+          HStack {
+            EditButton()
+          }
+                }.padding(EdgeInsets(top: 0, leading: 30, bottom: 0, trailing: 0))
+                List(workoutList, id: \.id) { WorkoutObject in
+                  HStack {
+                    DeleteButton()
+                  }
+                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+            }
+            NewWorkoutButton()
+            }
         }.sheet(isPresented: $showingMain){
             MainView(workout: self.chosenWorkout)
         }
