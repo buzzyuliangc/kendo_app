@@ -14,7 +14,7 @@ struct NewWorkoutButton: View {
         Button(action: {self.showingDetailed.toggle()}) {
           Text("New Workout")
         }.sheet(isPresented: $showingDetailed) {
-                DetailWorkoutView()
+            DetailWorkoutView(workout: WorkoutObject.init())
                 
             }
     }

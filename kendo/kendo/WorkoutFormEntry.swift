@@ -8,9 +8,31 @@
 
 import Foundation
 
-class WorkoutFormEntry {
+class WorkoutFormEntry: NSObject, NSCoding {
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(form, forKey:"form")
+        coder.encode(frequency, forKey: "frequency")
+        coder.encode(restTime, forKey: "restTime")
+        coder.encode(parentWorkout, forKey: "parentWorkout")
+        coder.encode(numSwings, forKey: "numSwings")
+        coder.encode(id, forKey: "id")
+    }
+    
+    required convenience init(coder: NSCoder) {
+        let form = coder.decodeObject(forKey: "form") as! String
+        let frequency = coder.decodeDouble(forKey: "frequency")
+        let restTime = coder.decodeInteger(forKey: "restTime")
+        let parentWorkout = coder.decodeObject(forKey: "parentWorkout") as! WorkoutObject
+        let numSwings = coder.decodeInteger(forKey: "numSwings")
+        let id = coder.decodeInteger(forKey: "id")
+        
+        self.init(form: form, frequency: frequency, restTime: restTime, numSwings: numSwings, parentWorkout: parentWorkout, id: id)
+    }
+    
     var form: String //form of swing used
     var frequency: Double //delay between swings in seconds
+    var speedSelection: Int
     var restTime: Int //rest time after form
     var parentWorkout: WorkoutObject
     var numSwings: Int
@@ -20,11 +42,11 @@ class WorkoutFormEntry {
     //      contained in it's own data structure
     
 //    init() {
-//        //possibly move these to globally defined default variables
-//        self.form = "Default Form"
-//        self.frequency = 200/60
-//        self.restTime = 15
-//        self.parentWorkout = nil;
+//        self.form = Constants.defaultForm
+//        self.frequency = Constants.defaultFrequency
+//        self.restTime = Constants.defaultRestTime
+//        self.numSwings = Constants.defaultSwingCount
+//        self.speedSelection = Constants.defaultSpeedSelections
 //    }
     
     init(form: String, frequency: Double, restTime: Int, numSwings: Int, parentWorkout: WorkoutObject, id:Int) {
@@ -34,6 +56,15 @@ class WorkoutFormEntry {
         self.numSwings = numSwings
         self.parentWorkout = parentWorkout
         self.id = id
+        self.speedSelection = Constants.defaultSpeedSelection
+    }
+    
+    func setSpeedSelection(speedSelection: Int) {
+        self.speedSelection = speedSelection
+    }
+    
+    func getSpeedSelection() -> Int{
+        return self.speedSelection
     }
     
     func setNumSwings(numSwings: Int) {

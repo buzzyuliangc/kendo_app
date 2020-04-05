@@ -12,7 +12,7 @@ struct NewFormButton: View {
     var body: some View {
         Button(action: {}) {
               Text("Add Form")
-            }.padding(EdgeInsets(top: 0, leading: 30, bottom: 0, trailing: 0))
+            }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
         
     }
 }

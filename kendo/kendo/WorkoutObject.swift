@@ -8,15 +8,42 @@
 
 import Foundation
 
-class WorkoutObject: NSObject {
+class WorkoutObject: NSObject, NSCoding {
+    
+    //encodes the object to the NSCoder
+    //this is used to store it as a Data object, notably with UserDefaults
+    func encode(with coder: NSCoder) {
+        coder.encode(id, forKey: "id")
+        coder.encode(name, forKey: "name")
+        coder.encode(forms, forKey: "forms")
+    }
+    
+    required convenience init(coder: NSCoder) {
+        let id = coder.decodeInteger(forKey: "id")
+        let name = coder.decodeObject(forKey: "name") as! String
+        let forms = coder.decodeObject(forKey: "forms") as! Array<WorkoutFormEntry>
+        self.init(id: id, name: name, forms: forms)
+    }
+    
     var forms: Array<WorkoutFormEntry>
     var name: String //NSString??
+    
+    //TODO: either figure out how to work IDs into the way the user's workouts are handled
+    //or don't use an ID at all. It might be possible to just avoid IDs because we're
+    //basically just passing an array between views and selecting indeces from them
+    //in the lists or just passing the objects themselves
     var id: Int
     
     override init() {
         self.forms = Array.init()
         self.name = String.init()
         self.id = Int.init()
+    }
+    
+    init(id: Int, name: String, forms: Array<WorkoutFormEntry>) {
+        self.id = id
+        self.name = name
+        self.forms = forms
     }
     
     func getForm(formIndex: Int) -> WorkoutFormEntry{

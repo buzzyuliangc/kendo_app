@@ -14,36 +14,36 @@ struct MainView: View {
     @State var showingEditWorkout = false
     @State var showModel = false
     //@ObservedObject var activeWorkout: ActiveWorkoutStore
-    var workout: WorkoutObject
+    
+    //TODO: I think making this variable a state will cause
+    //it to auto update when we push back to this with
+    //a new selection
+    @State var workout: WorkoutObject
     var body: some View {
-        //        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        var enteredText: String
-        
-        /*let workout = WorkoutObject.init()
-        workout.setName(name: "Workout1")
-        workout.addForm(form: WorkoutFormEntry.init(form: "Form1", frequency: 1.0, restTime: 15, numSwings: 10, parentWorkout: workout))
-        workout.addForm(form: WorkoutFormEntry.init(form: "Form2", frequency: 1.0, restTime: 15, numSwings: 10, parentWorkout: workout))
-        workout.addForm(form: WorkoutFormEntry.init(form: "Form3", frequency: 1.0, restTime: 15, numSwings: 10, parentWorkout: workout))*/
         let activeWorkout = ActiveWorkoutStore.init(workout: workout)
         
         return VStack {
             Spacer()
             Text("Kendo Time!").font(.largeTitle).foregroundColor(Color.gray)
-            Spacer().frame(height:460)
+            Spacer().frame(height:150)
+            WorkoutPreviewView(workout: workout).frame(height:160)
+            Spacer().frame(height:150)
             HStack {
                 //TOOD: I think instead of a text field we want to have a custom text object or button with a box defined around it that takes them to the selection page when pressed
-//                TextField("Workout Placeholder", text: enteredText)
+
                 Spacer()
                 
                 Button(action: {
-                    self.showingEditWorkout.toggle()
+                    self.showingEditWorkout = true
+                    self.showingWorkout = false
                     self.showModel = true
                         
                 }) {
                     Text("\(workout.getName())").foregroundColor(Color.white)
                 }
                 Button(action: {
-                    self.showingWorkout.toggle()
+                    self.showingWorkout = true
+                    self.showingEditWorkout = false
                     self.showModel = true
                         
                 }) {
@@ -63,14 +63,13 @@ struct MainView: View {
             //Spacer()
         }.sheet(isPresented: $showModel, content: {
             if self.showingWorkout == true {
-                WorkoutView(workout: self.workout, activeWorkout: activeWorkout)
+                WorkoutView(showWorkout: self.$showingWorkout, showSheet: self.$showModel, workout: self.workout, activeWorkout: activeWorkout)
             }
-
             if self.showingEditWorkout == true {
-                EditWorkoutView(chosenWorkout: self.workout, activeWorkout: activeWorkout)
+                EditWorkoutView(showSheet: self.$showModel, showEditWorkout: self.$showingEditWorkout, chosenWorkout: self.$workout, activeWorkout: activeWorkout)
             }
 
-            
+
         }).background(MainBackground())
         
     }

@@ -10,7 +10,9 @@ import SwiftUI
 
 struct WorkoutView: View {
     @State var isActive: Bool = true
-    @State var showingMain = false
+    @Binding var showWorkout: Bool
+    @Binding var showSheet: Bool
+//    @State var show = false
     var workout: WorkoutObject
     
     
@@ -34,7 +36,6 @@ struct WorkoutView: View {
                 }
             }
             if(self.activeWorkout.resting) {
-                //                var remainingRest =
                 HStack {
                     Text("Resting").bold().foregroundColor(Color.white)
                     Text("\(Int(self.activeWorkout.restTime - Int(self.activeWorkout.runningTime)) / 60):\(Int(self.activeWorkout.restTime - Int(self.activeWorkout.runningTime)) % 60 / 10)\(Int(self.activeWorkout.restTime - Int(self.activeWorkout.runningTime)) % 10)").foregroundColor(Color.white)
@@ -66,7 +67,9 @@ struct WorkoutView: View {
             
             if(!self.isActive) {
                 Button(action: {
-                    self.showingMain.toggle()
+                    //TODO: add code to log the stats for this workout
+                    self.showWorkout = false
+                    self.showSheet = false
                 }) {
                     Text("Quit")
                 }
@@ -77,11 +80,14 @@ struct WorkoutView: View {
                     Text("Quit")
                 }.hidden()
             }
-        }.sheet(isPresented: $showingMain) {
-            MainView(workout: self.workout)
-            
         }.background(Image("suburi").resizable()
             .frame(width: 420.0,height:500)).offset(y:-230)
+        
+//        .sheet(isPresented: $showingMain) {
+//            MainView(workout: self.workout)
+//
+//        }.background(Image("suburi").resizable()
+//            .frame(width: 420.0,height:500)).offset(y:-230)
         
     }
 }
@@ -93,6 +99,6 @@ struct WorkoutView_Previews: PreviewProvider {
         workout.addForm(form: WorkoutFormEntry.init(form: "Form2", frequency: 0.5, restTime: 15, numSwings: 10, parentWorkout: workout, id: 1))
         workout.addForm(form: WorkoutFormEntry.init(form: "Form3", frequency: 2.5, restTime: 15, numSwings: 10, parentWorkout: workout, id: 2))
         let activeWorkout = ActiveWorkoutStore.init(workout: workout)
-        return WorkoutView(workout: workout, activeWorkout: activeWorkout)
+        return WorkoutView(showWorkout: .constant(true), showSheet: .constant(false), workout: workout, activeWorkout: activeWorkout)
     }
 }

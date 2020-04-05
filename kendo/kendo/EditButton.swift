@@ -9,8 +9,10 @@
 import SwiftUI
 
 struct EditButton: View {
+    var action: () -> Void
+    
     var body: some View {
-        Button(action: {}) {
+        Button(action: self.action) {
           Text("Edit")
         }.padding(EdgeInsets(top: 0, leading: 30, bottom: 0, trailing: 0))
     }
@@ -18,6 +20,6 @@ struct EditButton: View {
 
 struct EditButton_Previews: PreviewProvider {
     static var previews: some View {
-        EditButton()
+        EditButton(action: {})
     }
 }

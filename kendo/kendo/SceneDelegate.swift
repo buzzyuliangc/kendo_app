@@ -20,11 +20,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let workout = WorkoutObject.init()
-        workout.setName(name: "Workout1")
-        workout.addForm(form: WorkoutFormEntry.init(form: "Form1", frequency: 1.0, restTime: 15, numSwings: 10, parentWorkout: workout, id:0))
-        workout.addForm(form: WorkoutFormEntry.init(form: "Form2", frequency: 1.0, restTime: 15, numSwings: 10, parentWorkout: workout,id:1))
-        workout.addForm(form: WorkoutFormEntry.init(form: "Form3", frequency: 1.0, restTime: 15, numSwings: 10, parentWorkout: workout,id:2))
+        
+        
+        //TODO: Check out a more elegant way to do check/force types without '!'
+        
+        
+        let listData = UserDefaults.standard.data(forKey: Constants.userWorkoutsKey)
+        let workoutList = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(listData!) as! Array<WorkoutObject>
+        let selectedWorkout = UserDefaults.standard.integer(forKey: Constants.userSelectedWorkoutKey)
+        let workout = workoutList[selectedWorkout]
+        print(workoutList)
+        print(selectedWorkout)
+        print(workout)
+        print(workout.getName())
+//        workout.setName(name: "Workout1")
+//        workout.addForm(form: WorkoutFormEntry.init(form: "Form1", frequency: 1.0, restTime: 15, numSwings: 10, parentWorkout: workout, id:0))
+//        workout.addForm(form: WorkoutFormEntry.init(form: "Form2", frequency: 1.0, restTime: 15, numSwings: 10, parentWorkout: workout,id:1))
+//        workout.addForm(form: WorkoutFormEntry.init(form: "Form3", frequency: 1.0, restTime: 15, numSwings: 10, parentWorkout: workout,id:2))
+        
         let mainView = MainView(workout: workout)
 
         // Use a UIHostingController as window root view controller.
