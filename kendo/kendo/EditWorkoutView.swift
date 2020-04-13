@@ -16,9 +16,13 @@ import SwiftUI
 struct EditWorkoutView: View {
     @Binding var showSheet: Bool
     @Binding var showEditWorkout: Bool
+    
     @State var showingMain = false
     @Binding var chosenWorkout: WorkoutObject
     @ObservedObject var activeWorkout: ActiveWorkoutStore
+//    let listData = UserDefaults.standard.data(forKey: Constants.userWorkoutsKey)
+    @State var workoutList = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(UserDefaults.standard.data(forKey: Constants.userWorkoutsKey)!) as! Array<WorkoutObject>
+    @State var addingNewWorkout: Bool = false
     
     /*var workoutList = [
      Workout(id: 0, name: "Workout0"),
@@ -31,19 +35,9 @@ struct EditWorkoutView: View {
      Workout(id: 7, name: "Workout7"),
      ]*/
     var body: some View {
-        var workoutList: Array<WorkoutObject>
-        let listData = UserDefaults.standard.data(forKey: Constants.userWorkoutsKey)
-        workoutList = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(listData!) as! Array<WorkoutObject>
-        //        var workoutList = [WorkoutObject]()
-        //        for i in 1...5{
-        //            let workout = WorkoutObject.init()
-        //            workout.setName(name: "Workout"+String(i))
-        //            workout.setId(id: i)
-        //            workoutList.append(workout)
-        //            workout.addForm(form: WorkoutFormEntry.init(form: "Form1", frequency: 1.5, restTime: 15, numSwings: 10, parentWorkout: workout, id: 0))
-        //            workout.addForm(form: WorkoutFormEntry.init(form: "Form2", frequency: 0.5, restTime: 15, numSwings: 10, parentWorkout: workout, id: 1))
-        //            workout.addForm(form: WorkoutFormEntry.init(form: "Form3", frequency: 2.5, restTime: 15, numSwings: 10, parentWorkout: workout, id: 2))
-        //        }
+        print("Is it there: ")
+//        let listData = UserDefaults.standard.data(forKey: Constants.userWorkoutsKey)
+//        var workoutList = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(listData!) as! Array<WorkoutObject>
         
         return NavigationView {
             VStack{
@@ -65,10 +59,11 @@ struct EditWorkoutView: View {
                         }
                     }.navigationBarTitle(Text("All Workouts"), displayMode: .inline)
                     
-                    List(workoutList, id: \.id) { WorkoutObject in
+                    List(workoutList, id: \.id) { workoutObject in
 //                        HStack {
 //                            EditButton()
-                            NavigationLink(destination: DetailWorkoutView(workout: WorkoutObject) ) {
+//                        DetailWorkoutView(showingWorkout: .constant(true), addingNewWorkout: self.$addingNewWorkout, workoutList: self.$workoutList, workout: workoutObject, formList: workoutObject.getForms(), selectedForm: (workoutObject.getForms() as Array<WorkoutFormEntry>)[0]) , enteredWorkoutName: workoutObject.getName()
+                        NavigationLink(destination: DetailWorkoutView(showingWorkout: .constant(true), addingNewWorkout: .constant(false), workoutList: self.$workoutList, workout: workoutObject, formList: workoutObject.getForms(), selectedForm: workoutObject.getForms()[0], enteredWorkoutName: workoutObject.getName())) {
                                 Text("Edit")
                             }
 //                        }
@@ -76,16 +71,22 @@ struct EditWorkoutView: View {
                     
                     List(workoutList, id: \.id) { WorkoutObject in
                         HStack {
-                            DeleteButton()
+                            DeleteButton(action: {
+                                
+                            })
                         }
                     }.padding(EdgeInsets(top: CGFloat(0), leading: CGFloat(0), bottom: CGFloat(0), trailing: CGFloat(0)))
                 }
-                NewWorkoutButton()
+                NewWorkoutButton(addingNewWorkout: self.$addingNewWorkout, workoutList: self.$workoutList)
             }
         }.onDisappear(perform: {
             print("attempting to save workout list")
-//            let encodedList = try! NSKeyedArchiver.archivedData(withRootObject: workoutList, requiringSecureCoding: false)
-//            UserDefaults.standard.set(encodedList, forKey: Constants.userWorkoutsKey)
+//            var tmpList = Array<WorkoutObject>()
+//            tmpList.append(contentsOf: workoutList)
+//            for workout in tmpList {
+//                print(workout is WorkoutObject)
+//            }
+            saveWorkouts(workoutList: self.workoutList)
         })
         
         //        List(workoutList, id: \.id) { WorkoutObject in
@@ -107,15 +108,12 @@ struct EditWorkoutView: View {
     }
 }
 
+func saveWorkouts(workoutList: Array<WorkoutObject>) -> Void{
+    Helper.saveWorkoutList(workoutList: workoutList)
+}
+
 struct EditWorkoutView_Previews: PreviewProvider {
     static var previews: some View {
-//        let workout = WorkoutObject.init()
-//        workout.setName(name: "Workout1")
-//        workout.addForm(form: WorkoutFormEntry.init(form: "Form1", frequency: 1.5, restTime: 15, numSwings: 10, parentWorkout: workout, id:0))
-//        workout.addForm(form: WorkoutFormEntry.init(form: "Form2", frequency: 0.5, restTime: 15, numSwings: 10, parentWorkout: workout, id:1))
-//        workout.addForm(form: WorkoutFormEntry.init(form: "Form3", frequency: 2.5, restTime: 15, numSwings: 10, parentWorkout: workout, id:2))
-//        let activeWorkout = ActiveWorkoutStore.init(workout: workout)
-//        return EditWorkoutView(showSheet: .constant(true), showEditWorkout: .constant(true), chosenWorkout: workout, activeWorkout: activeWorkout)
         Text("Test")
     }
 }

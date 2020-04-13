@@ -15,7 +15,6 @@ struct WorkoutView: View {
 //    @State var show = false
     var workout: WorkoutObject
     
-    
     @ObservedObject var activeWorkout: ActiveWorkoutStore
     
     var body: some View {
@@ -80,7 +79,7 @@ struct WorkoutView: View {
                     Text("Quit")
                 }.hidden()
             }
-        }.background(Image("suburi").resizable()
+        }.background(Image("Swing-" + "\(self.activeWorkout.subSwing)").resizable()
             .frame(width: 420.0,height:500)).offset(y:-230)
         
 //        .sheet(isPresented: $showingMain) {

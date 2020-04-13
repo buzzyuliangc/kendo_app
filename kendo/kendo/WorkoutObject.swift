@@ -35,7 +35,7 @@ class WorkoutObject: NSObject, NSCoding {
     var id: Int
     
     override init() {
-        self.forms = Array.init()
+        self.forms = Array<WorkoutFormEntry>()
         self.name = String.init()
         self.id = Int.init()
     }
@@ -44,6 +44,15 @@ class WorkoutObject: NSObject, NSCoding {
         self.id = id
         self.name = name
         self.forms = forms
+    }
+    
+    init(fromWorkoutObject: WorkoutObject) {
+        self.id = fromWorkoutObject.getId();
+        self.name = fromWorkoutObject.getName();
+        self.forms = Array<WorkoutFormEntry>()
+        for workoutFormEntry in fromWorkoutObject.getForms() {
+            self.forms.append(WorkoutFormEntry(fromWorkoutFormEntry: workoutFormEntry))
+        }
     }
     
     func getForm(formIndex: Int) -> WorkoutFormEntry{

@@ -59,6 +59,16 @@ class WorkoutFormEntry: NSObject, NSCoding {
         self.speedSelection = Constants.defaultSpeedSelection
     }
     
+    init(fromWorkoutFormEntry: WorkoutFormEntry) {
+        self.form = fromWorkoutFormEntry.getForm()
+        self.frequency = fromWorkoutFormEntry.getFrequency()
+        self.restTime = fromWorkoutFormEntry.getRestTime()
+        self.numSwings = fromWorkoutFormEntry.getNumSwings()
+        self.parentWorkout = fromWorkoutFormEntry.getParentWorkout()
+        self.speedSelection = fromWorkoutFormEntry.getSpeedSelection()
+        self.id = fromWorkoutFormEntry.getId()
+    }
+    
     func setSpeedSelection(speedSelection: Int) {
         self.speedSelection = speedSelection
     }

@@ -10,8 +10,10 @@ import SwiftUI
 
 struct EditFormView: View {
     var formObject: WorkoutFormEntry
+    @Binding var formList: Array<WorkoutFormEntry>
     @Binding var showingEditFormView: Bool
     
+    @State var addingNew: Bool
     @State var pickingForm = false
     @State var selectedForm: String;
     @State var selectedSpeed: Int;
@@ -21,6 +23,8 @@ struct EditFormView: View {
     var body: some View {
         //        Picker()
         var form = formObject.getForm();
+        
+        print("ENTERING EDIT FOR " + selectedForm)
         
         return ZStack {
             VStack{
@@ -41,6 +45,13 @@ struct EditFormView: View {
                         self.formObject.setForm(form: self.selectedForm)
                         self.formObject.setNumSwings(numSwings: Int(self.enteredSwings)!)
                         self.formObject.setRestTime(restTime: Int(self.enteredRestTime)!)
+                        if(self.addingNew) {
+//                            print(self.formObject.getParentWorkout().getName())
+//                            self.formObject.getParentWorkout().addForm(form: self.formObject)
+                            self.formList.append(self.formObject)
+                            self.addingNew = false
+                            print("ADDING NEW FORM!")
+                        }
                         self.showingEditFormView.toggle()
                     }) {
                         Text("Save")

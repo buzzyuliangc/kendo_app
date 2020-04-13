@@ -9,8 +9,10 @@
 import SwiftUI
 
 struct DeleteButton: View {
+    var action: () -> Void
+    
     var body: some View {
-        Button(action: {}) {
+        Button(action: self.action) {
           Text("Delete")
         }.padding(EdgeInsets(top: 0, leading: 30, bottom: 0, trailing: 0))
     }
@@ -18,6 +20,8 @@ struct DeleteButton: View {
 
 struct DeleteButton_Previews: PreviewProvider {
     static var previews: some View {
-        DeleteButton()
+        DeleteButton(action: {
+            
+        })
     }
 }

@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //TODO: MAKE A CONSTANT GLOBAL STRINGS FILE << DONE!
         //TODO: See about instantiating global default workouts elsewhere
+        //TODO: PROBABLY WANT TO INSTANTIATE GLOBAL DEFAULT WORKOUTS ELSEWHERE, THIS IS LOADING DEFAULTS EVERY TIME!
         
         if(UserDefaults.standard.array(forKey: Constants.userWorkoutsKey) == nil) {
             var workoutList = Array<WorkoutObject>()
@@ -54,9 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             workoutList.append(workout)
             
-            let encodedList = try! NSKeyedArchiver.archivedData(withRootObject: workoutList, requiringSecureCoding: false)
-            UserDefaults.standard.set(encodedList, forKey: Constants.userWorkoutsKey)
-            
+//            let encodedList = try! NSKeyedArchiver.archivedData(withRootObject: workoutList, requiringSecureCoding: false)
+//            UserDefaults.standard.set(encodedList, forKey: Constants.userWorkoutsKey)
+            Helper.saveWorkoutList(workoutList: workoutList)
+            print("saved default workout list!")
         }
         
         return true

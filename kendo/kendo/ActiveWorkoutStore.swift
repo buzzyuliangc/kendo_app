@@ -19,6 +19,7 @@ class ActiveWorkoutStore: ObservableObject {
     //var didChange = Some kind of publisher
     var workout: WorkoutObject
     var timer = Timer()
+    var counterAudioPlayer = CounterAudioPlayer()
     @Published var formIndex = 0
     @Published var activeForm: WorkoutFormEntry
     @Published var active: Bool = false
@@ -31,6 +32,12 @@ class ActiveWorkoutStore: ObservableObject {
     @Published var elapsedTime = 0.0
     @Published var runningTime = 0.0
     @Published var numForms = 0
+    @Published var subSwingIndex = 0
+    @Published var subSwingCount = 1
+    @Published var subSwingWait = 0.0
+    @Published var runningSubSwingTime = 0.0
+    @Published var subSwing = 1
+    @Published var done: Bool = false
     
     init(workout: WorkoutObject) {
         self.workout = workout
@@ -44,6 +51,15 @@ class ActiveWorkoutStore: ObservableObject {
         self.resting = false
         self.restTime = self.activeForm.getRestTime()
         self.swingWait = self.activeForm.getFrequency()
+        
+        let numSubs = Constants.formSubSwings[formName]?.count
+        if(numSubs != nil) {
+            self.subSwingWait = self.swingWait/Double(numSubs!)
+            self.subSwingCount = numSubs!
+        } else {
+            self.subSwingWait = self.activeForm.getFrequency()
+        }
+        resetSubSwing()
         loadForm(newForm: workout.getForm(formIndex: 0))
     }
     
@@ -55,13 +71,25 @@ class ActiveWorkoutStore: ObservableObject {
         self.resting = false
         self.restTime = newForm.getRestTime()
         self.swingWait = newForm.getFrequency()
+        
+        let numSubs = Constants.formSubSwings[newForm.getForm()]?.count
+        if(numSubs != nil) {
+            self.subSwingWait = self.swingWait/Double(numSubs!)
+            self.subSwingCount = numSubs!
+        } else {
+            self.subSwingWait = self.activeForm.getFrequency()
+        }
+        
     }
     
     func incSwing() {
+        resetSubSwing()
         if(self.swingNum < self.swingMax) {
             self.swingNum += 1
+            
+            counterAudioPlayer.playCount(num: self.swingNum)
+            
         }
-//        else if(self.swingNum > self.swingMax) {
         else {
             if(self.formIndex < workout.getForms().count){
                 enterRest()
@@ -70,6 +98,25 @@ class ActiveWorkoutStore: ObservableObject {
                 endWorkout()
             }
         }
+    }
+    
+    func resetSubSwing() {
+        self.subSwingIndex = 0
+        let subSwingArray = Constants.formSubSwings[self.formName] ?? [1]
+        self.subSwing = subSwingArray[self.subSwingIndex]
+    }
+    
+    func incSubSwing() {
+        self.subSwingIndex += 1
+        
+        let subSwingArray = Constants.formSubSwings[self.formName] ?? [1]
+        print(self.formName)
+        print(subSwingArray)
+        print(subSwingIndex)
+        if(self.subSwingIndex < subSwingArray.count) {
+            self.subSwing = subSwingArray[self.subSwingIndex]
+        }
+        self.runningSubSwingTime = 0.0
     }
     
     func start(inc: Double) {
@@ -87,6 +134,7 @@ class ActiveWorkoutStore: ObservableObject {
     func enterRest() {
         self.runningTime = 0.0
         self.resting = true
+        self.subSwing = -1
     }
     
     func endRest() {
@@ -101,6 +149,8 @@ class ActiveWorkoutStore: ObservableObject {
             self.runningTime = 0.0
             self.swingNum = 0
             loadForm(newForm: workout.getForm(formIndex: self.formIndex))
+        } else {
+            endWorkout()
         }
     }
     
@@ -108,6 +158,11 @@ class ActiveWorkoutStore: ObservableObject {
         if(self.active) {
             elapsedTime += inc
             runningTime += inc
+            runningSubSwingTime += inc
+            
+            if(runningTime >= self.subSwingWait && self.subSwingIndex < subSwingCount - 1 && self.resting == false) {
+                incSubSwing()
+            }
             if(runningTime >= self.swingWait && self.resting == false) {
                 incSwing()
                 runningTime = 0.0
@@ -123,6 +178,8 @@ class ActiveWorkoutStore: ObservableObject {
     
     func endWorkout() {
         timer.invalidate()
+        self.active = false
+        self.done = true
     }
     
     func toggle() {
