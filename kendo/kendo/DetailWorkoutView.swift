@@ -61,31 +61,32 @@ struct DetailWorkoutView: View {
                             
                             //DeleteButton()
                         }
-                    }.navigationBarItems(leading: self.addingNewWorkout == true ? AnyView(Button(action:{
-                                                self.showingWorkout.toggle()
-                                                }){
-                                                Text("Cancel")
-                    
-                                                }) : AnyView(EmptyView()),
-                                                                trailing: self.addingNewWorkout == true ? AnyView(Button(action: {
-                    
-                                                                    if(self.workout.getForms().count != 0) {
-                                                                        print("SAVING NEW WORKOUT!")
-                                                                        self.workoutList.append(self.workout)
-                                                                    } else if (self.formList.count != 0) {
-                                                                        for form in self.formList {
-                                                                            self.workout.addForm(form: form)
-                                                                        }
-                                                                        self.workoutList.append(self.workout)
-                                                                    }
-                                                                    else {
-                                                                        print("Not enough forms to save!")
-                                                                        print(self.formList.count)
-                                                                    }
-                                                                    self.showingWorkout.toggle()
-                                                                }) {
-                                                                    Text("Save")
-                                                                }) : AnyView(EmptyView())).navigationBarTitle(Text(self.workout.getName()), displayMode: .inline)
+                    }.navigationBarTitle(Text(self.workout.getName()), displayMode: .inline)
+//                        .navigationBarItems(leading: self.addingNewWorkout == true ? AnyView(Button(action:{
+//                                                self.showingWorkout.toggle()
+//                                                }){
+//                                                Text("Cancel")
+//                    
+//                                                }) : AnyView(EmptyView()),
+//                                                                trailing: self.addingNewWorkout == true ? AnyView(Button(action: {
+//                    
+//                                                                    if(self.workout.getForms().count != 0) {
+//                                                                        print("SAVING NEW WORKOUT!")
+//                                                                        self.workoutList.append(self.workout)
+//                                                                    } else if (self.formList.count != 0) {
+//                                                                        for form in self.formList {
+//                                                                            self.workout.addForm(form: form)
+//                                                                        }
+//                                                                        self.workoutList.append(self.workout)
+//                                                                    }
+//                                                                    else {
+//                                                                        print("Not enough forms to save!")
+//                                                                        print(self.formList.count)
+//                                                                    }
+//                                                                    self.showingWorkout.toggle()
+//                                                                }) {
+//                                                                    Text("Save")
+//                                                                }) : AnyView(EmptyView()))
                     //                    .navigationBarItems(trailing: HStack{self.addingNewWorkout == true ? AnyView(Button(action:{
                     //
                     //                    }){

@@ -42,69 +42,80 @@ struct EditWorkoutView: View {
         return NavigationView {
             VStack{
                 HStack{
-                    List(workoutList, id: \.id) { WorkoutObject in
+                    List(workoutList, id: \.id) { workoutObject in
                         HStack {
                             Button(action: {
                                 self.showingMain.toggle()
                                 
-                                self.chosenWorkout = WorkoutObject
+                                self.chosenWorkout = workoutObject
                                 UserDefaults.standard.set(self.chosenWorkout.id, forKey: Constants.userSelectedWorkoutKey)
                                 
                                 self.showSheet = false
                                 self.showEditWorkout = false
                             }) {
-                                Text(WorkoutObject.getName())
-                            }
-                            //DeleteButton()
-                        }
-                    }.navigationBarTitle(Text("All Workouts"), displayMode: .inline)
-                    
-                    List(workoutList, id: \.id) { workoutObject in
-//                        HStack {
-//                            EditButton()
-//                        DetailWorkoutView(showingWorkout: .constant(true), addingNewWorkout: self.$addingNewWorkout, workoutList: self.$workoutList, workout: workoutObject, formList: workoutObject.getForms(), selectedForm: (workoutObject.getForms() as Array<WorkoutFormEntry>)[0]) , enteredWorkoutName: workoutObject.getName()
-                        NavigationLink(destination: DetailWorkoutView(showingWorkout: .constant(true), addingNewWorkout: .constant(false), workoutList: self.$workoutList, workout: workoutObject, formList: workoutObject.getForms(), selectedForm: workoutObject.getForms()[0], enteredWorkoutName: workoutObject.getName())) {
+                                Text(workoutObject.getName())
+                            }.buttonStyle(BorderlessButtonStyle())
+                            
+                            Spacer()
+                            
+                            NavigationLink(destination: DetailWorkoutView(showingWorkout: .constant(true), addingNewWorkout: .constant(false), workoutList: self.$workoutList, workout: workoutObject, formList: workoutObject.getForms(), selectedForm: (workoutObject.getForms() as Array<WorkoutFormEntry>)[0], enteredWorkoutName: workoutObject.getName())) {
                                 Text("Edit")
                             }
-//                        }
-                    }.padding(EdgeInsets(top: CGFloat(0), leading: CGFloat(30), bottom: CGFloat(0), trailing: CGFloat(0)))
-                    
-                    List(workoutList, id: \.id) { WorkoutObject in
-                        HStack {
+                            
+                            //                            Spacer()
+                            
+                            
                             DeleteButton(action: {
                                 
-                            })
+                                }).padding(EdgeInsets(top: CGFloat(0), leading: CGFloat(30), bottom: CGFloat(0), trailing: CGFloat(0))).buttonStyle(BorderlessButtonStyle())
+                            //.buttonStyle(PrimitiveButtonStyle())
+                            
+                            
+                            //DeleteButton()
                         }
-                    }.padding(EdgeInsets(top: CGFloat(0), leading: CGFloat(0), bottom: CGFloat(0), trailing: CGFloat(0)))
+                    }
+                    
+//                    List(workoutList, id: \.id) { WorkoutObject in
+//                        HStack {
+//                            Button(action: {
+//                                self.showingMain.toggle()
+//
+//                                self.chosenWorkout = WorkoutObject
+//                                UserDefaults.standard.set(self.chosenWorkout.id, forKey: Constants.userSelectedWorkoutKey)
+//
+//                                self.showSheet = false
+//                                self.showEditWorkout = false
+//                            }) {
+//                                Text(WorkoutObject.getName())
+//                            }
+//                            //DeleteButton()
+//                        }
+//                    }.navigationBarTitle(Text("All Workouts"), displayMode: .inline)
+//
+//                    List(workoutList, id: \.id) { workoutObject in
+////                        HStack {
+////                            EditButton()
+////                        DetailWorkoutView(showingWorkout: .constant(true), addingNewWorkout: self.$addingNewWorkout, workoutList: self.$workoutList, workout: workoutObject, formList: workoutObject.getForms(), selectedForm: (workoutObject.getForms() as Array<WorkoutFormEntry>)[0]) , enteredWorkoutName: workoutObject.getName()
+//                        NavigationLink(destination: DetailWorkoutView(showingWorkout: .constant(true), addingNewWorkout: .constant(false), workoutList: self.$workoutList, workout: workoutObject, formList: workoutObject.getForms(), selectedForm: workoutObject.getForms()[0], enteredWorkoutName: workoutObject.getName())) {
+//                                Text("Edit")
+//                            }
+////                        }
+//                    }.padding(EdgeInsets(top: CGFloat(0), leading: CGFloat(30), bottom: CGFloat(0), trailing: CGFloat(0)))
+//
+//                    List(workoutList, id: \.id) { WorkoutObject in
+//                        HStack {
+//                            DeleteButton(action: {
+//
+//                            })
+//                        }
+//                    }.padding(EdgeInsets(top: CGFloat(0), leading: CGFloat(0), bottom: CGFloat(0), trailing: CGFloat(0)))
                 }
                 NewWorkoutButton(addingNewWorkout: self.$addingNewWorkout, workoutList: self.$workoutList)
             }
         }.onDisappear(perform: {
             print("attempting to save workout list")
-//            var tmpList = Array<WorkoutObject>()
-//            tmpList.append(contentsOf: workoutList)
-//            for workout in tmpList {
-//                print(workout is WorkoutObject)
-//            }
             saveWorkouts(workoutList: self.workoutList)
         })
-        
-        //        List(workoutList, id: \.id) { WorkoutObject in
-        //          HStack {
-        //            EditButton()
-        //          }
-        //                }.padding(EdgeInsets(top: CGFloat(0), leading: CGFloat(30), bottom: CGFloat(0), trailing: CGFloat(0)))
-        //                List(workoutList, id: \.id) { WorkoutObject in
-        //                  HStack {
-        //                    DeleteButton()
-        //                  }
-        //                }.padding(EdgeInsets(top: CGFloat(0), leading: CGFloat(0), bottom: CGFloat(0), trailing: CGFloat(0)))
-        //            }
-        //            NewWorkoutButton()
-        //            }
-        //        }.sheet(isPresented: $showingMain){
-        //            MainView(workout: self.chosenWorkout)
-        //        }
     }
 }
 
