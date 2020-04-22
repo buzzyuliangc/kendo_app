@@ -40,7 +40,7 @@ struct DetailWorkoutView: View {
                             Button(action: {
                             }) {
                                 Text(workoutFormEntry.getForm())
-                            }
+                            }.foregroundColor(.white).padding().background(Color.gray).cornerRadius(8)
                             
                             Spacer()
                             
@@ -48,15 +48,14 @@ struct DetailWorkoutView: View {
                                 self.selectedForm = workoutFormEntry
                                 print("SENDING EDIT FOR " + self.selectedForm.getForm())
                                 self.showingFormEditor.toggle()
-                            }).buttonStyle(BorderlessButtonStyle()).padding(EdgeInsets(top: CGFloat(0), leading: CGFloat(30), bottom: CGFloat(0), trailing: CGFloat(0)))
+                            }).buttonStyle(BorderlessButtonStyle()).foregroundColor(.white).padding().background(Color.accentColor).cornerRadius(8).padding(EdgeInsets(top: CGFloat(0), leading: CGFloat(0), bottom: CGFloat(0), trailing: CGFloat(0)))
                             
                             //                            Spacer()
                             
                             
                             DeleteButton(action: {
                                 self.deletingForm.toggle()
-                            }).padding(EdgeInsets(top: CGFloat(0), leading: CGFloat(30), bottom: CGFloat(0), trailing: CGFloat(0)))
-                            //.buttonStyle(PrimitiveButtonStyle())
+                            }).padding(EdgeInsets(top: CGFloat(0), leading: CGFloat(0), bottom: CGFloat(0), trailing: CGFloat(0))).foregroundColor(.white).padding().background(Color.red).cornerRadius(8)                            //.buttonStyle(PrimitiveButtonStyle())
                             
                             
                             //DeleteButton()
@@ -124,7 +123,7 @@ struct DetailWorkoutView: View {
                     self.showingFormEditor.toggle()
                 }) {
                     Text("Add Form")
-                }.padding(EdgeInsets(top: CGFloat(0), leading: CGFloat(0), bottom: CGFloat(0), trailing: CGFloat(0)))
+                }.foregroundColor(.white).padding().background(Color.green).cornerRadius(8).padding(EdgeInsets(top: CGFloat(0), leading: CGFloat(0), bottom: CGFloat(0), trailing: CGFloat(0)))
                 
             }
         }.popover(isPresented: $showingFormEditor, content: {

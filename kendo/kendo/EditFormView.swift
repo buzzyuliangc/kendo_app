@@ -36,8 +36,7 @@ struct EditFormView: View {
                         self.showingEditFormView.toggle()
                     }) {
                         Text("Cancel")
-                    }
-                    
+                    }.foregroundColor(.white).padding().background(Color.red).cornerRadius(8)
                     Spacer()
                     
                     Button(action: {
@@ -55,8 +54,7 @@ struct EditFormView: View {
                         self.showingEditFormView.toggle()
                     }) {
                         Text("Save")
-                    }
-                    
+                    }.foregroundColor(.white).padding().background(Color.green).cornerRadius(8)
                     Spacer()
                 }
                 

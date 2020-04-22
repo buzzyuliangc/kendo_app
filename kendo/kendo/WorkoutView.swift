@@ -26,7 +26,7 @@ struct WorkoutView: View {
             //                Text("Paused")
             //            }
             Spacer().frame(height:160)
-            Text("\(Int(self.activeWorkout.elapsedTime) / 60):\(Int(self.activeWorkout.elapsedTime) % 60 / 10)\(Int(self.activeWorkout.elapsedTime) % 10)").padding(EdgeInsets(top: 250, leading: 300, bottom: 0, trailing: 0))
+            Text("\(Int(self.activeWorkout.elapsedTime) / 60):\(Int(self.activeWorkout.elapsedTime) % 60 / 10)\(Int(self.activeWorkout.elapsedTime) % 10)").padding(EdgeInsets(top: 300, leading: 300, bottom: 0, trailing: 0))
             HStack() {
                 if(isActive) {
                     Text("Paused").font(.largeTitle).hidden()
@@ -47,10 +47,10 @@ struct WorkoutView: View {
                 Text(verbatim: self.activeWorkout.formName)
                 
                 Text(verbatim: "\(String(self.activeWorkout.swingNum))" + "/" + "\(String(self.activeWorkout.swingMax))")
-            }.padding(EdgeInsets(top: 300, leading: 300, bottom: 0, trailing: 0))
+            }.padding(EdgeInsets(top: 280, leading: 300, bottom: 0, trailing: 0))
             HStack {
                 Text(verbatim: "Suburi \(self.activeWorkout.formIndex+1)/\(self.activeWorkout.numForms)")
-            }.padding(EdgeInsets(top: 0, leading: 300, bottom: 0, trailing: 0))
+            }.padding(EdgeInsets(top: 0, leading: 300, bottom: 300, trailing: 0))
             Button<HStack>(action: {
                 self.activeWorkout.toggle()
                 self.isActive.toggle()
@@ -62,7 +62,7 @@ struct WorkoutView: View {
                         Text("Pause")
                     }
                 }
-            }.padding(EdgeInsets(top: 300, leading: 0, bottom: 0, trailing: 0))
+            }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)).foregroundColor(.white).padding().background(Color.red).cornerRadius(8)
             
             if(!self.isActive) {
                 Button(action: {
@@ -71,8 +71,7 @@ struct WorkoutView: View {
                     self.showSheet = false
                 }) {
                     Text("Quit")
-                }
-            } else {
+                }.foregroundColor(.white).padding().background(Color.red).cornerRadius(8)            } else {
                 Button(action: {
                     //ACTION TO POP VIEW
                 }) {

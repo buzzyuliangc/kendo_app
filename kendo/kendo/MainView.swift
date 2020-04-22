@@ -39,8 +39,8 @@ struct MainView: View {
                     self.showModel = true
                         
                 }) {
-                    Text("\(workout.getName())").foregroundColor(Color.white)
-                }
+                    Text("\(workout.getName())")
+                }.foregroundColor(.white).padding().background(Color.gray).cornerRadius(8)
                 Button(action: {
                     self.showingWorkout = true
                     self.showingEditWorkout = false
@@ -48,16 +48,17 @@ struct MainView: View {
                         
                 }) {
                     Text("Start")
-                }
+                }.foregroundColor(.white).padding().background(Color.green).cornerRadius(8)
                 Spacer()
             }
             HStack {
                 Button(action: {}) {
                     Text("Stats")
-                }
+                }.foregroundColor(.white).padding().background(Color.red).cornerRadius(8)
                 Button(action: {}) {
                     Text("Reminders")
-                }
+                }.foregroundColor(.white).padding().background(Color.accentColor).cornerRadius(8)
+                
             }
             //Spacer()
             //Spacer()

@@ -54,20 +54,19 @@ struct EditWorkoutView: View {
                                 self.showEditWorkout = false
                             }) {
                                 Text(workoutObject.getName())
-                            }.buttonStyle(BorderlessButtonStyle())
+                            }.buttonStyle(BorderlessButtonStyle()).foregroundColor(.white).padding().background(Color.gray).cornerRadius(8)
                             
                             Spacer()
                             
                             NavigationLink(destination: DetailWorkoutView(showingWorkout: .constant(true), addingNewWorkout: .constant(false), workoutList: self.$workoutList, workout: workoutObject, formList: workoutObject.getForms(), selectedForm: (workoutObject.getForms() as Array<WorkoutFormEntry>)[0], enteredWorkoutName: workoutObject.getName())) {
                                 Text("Edit")
-                            }
-                            
+                            }.foregroundColor(.white).padding().background(Color.accentColor).cornerRadius(8)
                             //                            Spacer()
                             
                             
                             DeleteButton(action: {
                                 
-                                }).padding(EdgeInsets(top: CGFloat(0), leading: CGFloat(30), bottom: CGFloat(0), trailing: CGFloat(0))).buttonStyle(BorderlessButtonStyle())
+                                }).padding(EdgeInsets(top: CGFloat(0), leading: CGFloat(0), bottom: CGFloat(0), trailing: CGFloat(0))).buttonStyle(BorderlessButtonStyle()).foregroundColor(.white).padding().background(Color.red).cornerRadius(8)
                             //.buttonStyle(PrimitiveButtonStyle())
                             
                             

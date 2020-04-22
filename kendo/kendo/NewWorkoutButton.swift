@@ -24,7 +24,7 @@ struct NewWorkoutButton: View {
             
         }) {
             Text("New Workout")
-        }.sheet(isPresented: $showingDetailed) {
+        }.foregroundColor(.white).padding().background(Color.green).cornerRadius(8).sheet(isPresented: $showingDetailed) {
             
             DetailWorkoutView(showingWorkout: self.$showingDetailed, addingNewWorkout: self.$addingNewWorkout, workoutList: self.$workoutList, workout: self.newWorkout, formList: self.newWorkout.getForms(), selectedForm: WorkoutFormEntry(form: Constants.defaultForm, frequency: Constants.defaultFrequency, restTime: Constants.defaultRestTime, numSwings: Constants.defaultSwingCount, parentWorkout: self.newWorkout, id:0), enteredWorkoutName: self.newWorkout.getName())
                 
