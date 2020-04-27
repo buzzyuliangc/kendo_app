@@ -23,7 +23,7 @@ struct Constants {
                                 "Form8": [1,2],
                                 "Form9": [1,2],
                                 "Form10": [1,2]]
-    
+    //sound files for counting
     static let numberFiles = [1: "1sound.mp3",
                           2: "2sound.mp3",
                           3: "3sound.mp3",
@@ -34,7 +34,7 @@ struct Constants {
                           8: "8sound.mp3",
                           9: "9sound.mp3",
                           10: "10sound.mp3"]
-    
+    //parameters for form timing
     static let defaultFrequency = 1.0
     static let defaultForm = "Form1"
     static let defaultSwingCount = 10

@@ -13,23 +13,22 @@ struct MainView: View {
     @State var showingWorkout = false
     @State var showingEditWorkout = false
     @State var showModel = false
-    //@ObservedObject var activeWorkout: ActiveWorkoutStore
     
-    //TODO: I think making this variable a state will cause
     //it to auto update when we push back to this with
     //a new selection
     @State var workout: WorkoutObject
     var body: some View {
         let activeWorkout = ActiveWorkoutStore.init(workout: workout)
-        
+        //init new workout
         return VStack {
+            //main menu layout
             Spacer()
             Text("Kendo Time!").font(.largeTitle).foregroundColor(Color.gray)
             Spacer().frame(height:150)
             WorkoutPreviewView(workout: workout).frame(height:160)
             Spacer().frame(height:150)
             HStack {
-                //TOOD: I think instead of a text field we want to have a custom text object or button with a box defined around it that takes them to the selection page when pressed
+                
 
                 Spacer()
                 
@@ -52,6 +51,7 @@ struct MainView: View {
                 Spacer()
             }
             HStack {
+                //these two buttons are not implemented yet
                 Button(action: {}) {
                     Text("Stats")
                 }.foregroundColor(.white).padding().background(Color.red).cornerRadius(8)
@@ -62,11 +62,11 @@ struct MainView: View {
             }
             //Spacer()
             //Spacer()
-        }.sheet(isPresented: $showModel, content: {
+        }.sheet(isPresented: $showModel, content: {//change view
             if self.showingWorkout == true {
                 WorkoutView(showWorkout: self.$showingWorkout, showSheet: self.$showModel, workout: self.workout, activeWorkout: activeWorkout)
             }
-            if self.showingEditWorkout == true {
+            if self.showingEditWorkout == true {//change view
                 EditWorkoutView(showSheet: self.$showModel, showEditWorkout: self.$showingEditWorkout, chosenWorkout: self.$workout, activeWorkout: activeWorkout)
             }
 

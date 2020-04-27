@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-
+//pause button view
 struct PauseButton: View {
     @State var paused = false
     var body: some View {

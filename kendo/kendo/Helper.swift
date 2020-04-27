@@ -10,6 +10,7 @@ import Foundation
 
 class Helper {
     static func saveWorkoutList(workoutList: Array<WorkoutObject>) {
+        //helper function for saving workoutlist to device
         var newWorkoutList = Array<WorkoutObject>()
         for workoutObj in workoutList {
             var newWorkout = WorkoutObject.init()

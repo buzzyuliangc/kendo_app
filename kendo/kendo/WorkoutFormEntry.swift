@@ -8,6 +8,8 @@
 
 import Foundation
 
+// this class is used to keep track of the workout forms created by the user
+
 class WorkoutFormEntry: NSObject, NSCoding {
     
     func encode(with coder: NSCoder) {

@@ -5,7 +5,7 @@
 //  Created by Buzz Cai on 3/10/20.
 //  Copyright © 2020 401_group_8. All rights reserved.
 //
-
+//edit workout view displays all the workouts
 import SwiftUI
 
 /*struct Workout: Identifiable {
@@ -109,6 +109,7 @@ struct EditWorkoutView: View {
 //                        }
 //                    }.padding(EdgeInsets(top: CGFloat(0), leading: CGFloat(0), bottom: CGFloat(0), trailing: CGFloat(0)))
                 }
+                //new workout button
                 NewWorkoutButton(addingNewWorkout: self.$addingNewWorkout, workoutList: self.$workoutList)
             }
         }.onDisappear(perform: {
@@ -117,7 +118,7 @@ struct EditWorkoutView: View {
         })
     }
 }
-
+//save to device
 func saveWorkouts(workoutList: Array<WorkoutObject>) -> Void{
     Helper.saveWorkoutList(workoutList: workoutList)
 }

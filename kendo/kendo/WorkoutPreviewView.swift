@@ -7,10 +7,9 @@
 //
 
 import SwiftUI
-
+//this is the preview for workout that is showing up on menu
 struct WorkoutPreviewView: View {
     var workout: WorkoutObject
-    
     var formsString: String {
         let formList = workout.forms
         var tmpString = workout.getForms()[0].form
@@ -20,6 +19,7 @@ struct WorkoutPreviewView: View {
         return tmpString
     }
     
+    // stats getters
     var averageRestString: String {
         let formList = workout.forms
         var sum = 0
@@ -46,7 +46,7 @@ struct WorkoutPreviewView: View {
         }
         return String(sum) + "s"
     }
-    
+    //form the view
     var body: some View {
         VStack {
             HStack {

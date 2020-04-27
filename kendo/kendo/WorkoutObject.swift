@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+//this class acts as a capsule for workoutformentry class to assemble them into the entire workout
 class WorkoutObject: NSObject, NSCoding {
     
     //encodes the object to the NSCoder
@@ -54,7 +54,7 @@ class WorkoutObject: NSObject, NSCoding {
             self.forms.append(WorkoutFormEntry(fromWorkoutFormEntry: workoutFormEntry))
         }
     }
-    
+    //getters
     func getForm(formIndex: Int) -> WorkoutFormEntry{
         return forms[formIndex]
     }
@@ -70,7 +70,7 @@ class WorkoutObject: NSObject, NSCoding {
     func getName() -> String {
         return name
     }
-    
+    //setters
     func setName(name: String) {
         self.name = name
     }

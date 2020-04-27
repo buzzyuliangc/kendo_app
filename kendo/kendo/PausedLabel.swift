@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-
+// paused label view
 struct PausedLabel: View {
     var body: some View {
         Text("Paused")

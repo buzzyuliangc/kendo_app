@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-
+//this view serves as the setting page for editing forms.
 struct EditFormView: View {
     var formObject: WorkoutFormEntry
     @Binding var formList: Array<WorkoutFormEntry>

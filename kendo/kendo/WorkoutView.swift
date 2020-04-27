@@ -7,8 +7,9 @@
 //
 
 import SwiftUI
-
+// the main workout view
 struct WorkoutView: View {
+    //states trackers for tracking whether to change view
     @State var isActive: Bool = true
     @Binding var showWorkout: Bool
     @Binding var showSheet: Bool
@@ -26,8 +27,10 @@ struct WorkoutView: View {
             //                Text("Paused")
             //            }
             Spacer().frame(height:160)
+            //time counters
             Text("\(Int(self.activeWorkout.elapsedTime) / 60):\(Int(self.activeWorkout.elapsedTime) % 60 / 10)\(Int(self.activeWorkout.elapsedTime) % 10)").padding(EdgeInsets(top: 300, leading: 300, bottom: 0, trailing: 0))
             HStack() {
+                //paused label
                 if(isActive) {
                     Text("Paused").font(.largeTitle).hidden()
                 } else {
@@ -35,6 +38,7 @@ struct WorkoutView: View {
                 }
             }
             if(self.activeWorkout.resting) {
+                //resting label and counter
                 HStack {
                     Text("Resting").bold().foregroundColor(Color.white)
                     Text("\(Int(self.activeWorkout.restTime - Int(self.activeWorkout.runningTime)) / 60):\(Int(self.activeWorkout.restTime - Int(self.activeWorkout.runningTime)) % 60 / 10)\(Int(self.activeWorkout.restTime - Int(self.activeWorkout.runningTime)) % 10)").foregroundColor(Color.white)
@@ -44,13 +48,16 @@ struct WorkoutView: View {
             }
             
             HStack{
+                //swing counter
                 Text(verbatim: self.activeWorkout.formName)
                 
                 Text(verbatim: "\(String(self.activeWorkout.swingNum))" + "/" + "\(String(self.activeWorkout.swingMax))")
             }.padding(EdgeInsets(top: 280, leading: 300, bottom: 0, trailing: 0))
             HStack {
+                //form counter and name
                 Text(verbatim: "Suburi \(self.activeWorkout.formIndex+1)/\(self.activeWorkout.numForms)")
             }.padding(EdgeInsets(top: 0, leading: 300, bottom: 300, trailing: 0))
+            //pause button and resume
             Button<HStack>(action: {
                 self.activeWorkout.toggle()
                 self.isActive.toggle()
@@ -63,6 +70,7 @@ struct WorkoutView: View {
                     }
                 }
             }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)).foregroundColor(.white).padding().background(Color.red).cornerRadius(8)
+            //quit button
             
             if(!self.isActive) {
                 Button(action: {

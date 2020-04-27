@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-
+//shows all the forms in the workout and ability to edit or remove them
 struct DetailWorkoutView: View {
     @Binding var showingWorkout: Bool
     @State var showingFormEditor = false

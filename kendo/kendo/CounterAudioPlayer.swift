@@ -13,7 +13,7 @@ class  CounterAudioPlayer {
     
     var audioPlayer: AVAudioPlayer?
     var audioPlayers = Dictionary<Int, AVAudioPlayer>()
-    
+    //audio file setter
     init () {
         for num in 1...10 {
             let fileName = Constants.numberFiles[num]
@@ -31,6 +31,7 @@ class  CounterAudioPlayer {
         }
     }
     
+    //controller ffor playing mode
     func playCount(num: Int) {
         self.playNum(num: num%10)
         if(num%10 == 0) {
@@ -38,6 +39,7 @@ class  CounterAudioPlayer {
         }
     }
     
+    //playing compond number
     func playCompoundCount(firstNum: Int, secondNum: Int) {
         if(audioPlayers[firstNum] != nil) {
             let now: TimeInterval = audioPlayers[firstNum]!.deviceCurrentTime
@@ -50,6 +52,7 @@ class  CounterAudioPlayer {
         }
     }
     
+    //vanilla play num
     func playNum(num:Int) {
         if(audioPlayers[num] != nil) {
             audioPlayers[num]!.play()
