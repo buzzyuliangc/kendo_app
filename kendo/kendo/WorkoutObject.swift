@@ -34,18 +34,22 @@ class WorkoutObject: NSObject, NSCoding {
     //in the lists or just passing the objects themselves
     var id: Int
     
+
+    //initiates the workout object with blank values
     override init() {
         self.forms = Array<WorkoutFormEntry>()
         self.name = String.init()
         self.id = Int.init()
     }
     
+    //initiates the workout object with passed values
     init(id: Int, name: String, forms: Array<WorkoutFormEntry>) {
         self.id = id
         self.name = name
         self.forms = forms
     }
     
+    //initiates a workout object as a copy of a passed workout object
     init(fromWorkoutObject: WorkoutObject) {
         self.id = fromWorkoutObject.getId();
         self.name = fromWorkoutObject.getName();
@@ -54,6 +58,7 @@ class WorkoutObject: NSObject, NSCoding {
             self.forms.append(WorkoutFormEntry(fromWorkoutFormEntry: workoutFormEntry))
         }
     }
+
     //getters
     func getForm(formIndex: Int) -> WorkoutFormEntry{
         return forms[formIndex]
@@ -70,6 +75,7 @@ class WorkoutObject: NSObject, NSCoding {
     func getName() -> String {
         return name
     }
+    
     //setters
     func setName(name: String) {
         self.name = name

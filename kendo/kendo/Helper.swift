@@ -8,9 +8,13 @@
 
 import Foundation
 
+//is a helper class
 class Helper {
+    
+    //helper function for saving workoutlist to device
+    //necessary because saving it to UserDefaults seemingly requires the creation of a new list of objects
+    //perhaps at the level it's encoding at, it's unclear but this works
     static func saveWorkoutList(workoutList: Array<WorkoutObject>) {
-        //helper function for saving workoutlist to device
         var newWorkoutList = Array<WorkoutObject>()
         for workoutObj in workoutList {
             var newWorkout = WorkoutObject.init()
@@ -23,10 +27,5 @@ class Helper {
         }
         let encodedList = try! NSKeyedArchiver.archivedData(withRootObject: newWorkoutList, requiringSecureCoding: false)
         UserDefaults.standard.set(encodedList, forKey: Constants.userWorkoutsKey)
-        
-        
-        print("Updated user workouts!")
-        print(UserDefaults.standard.array(forKey: Constants.userWorkoutsKey));
-        print(UserDefaults.standard.array(forKey: "blahblahblah"));
     }
 }

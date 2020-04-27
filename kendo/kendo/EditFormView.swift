@@ -21,10 +21,7 @@ struct EditFormView: View {
     @State var enteredRestTime: String
     
     var body: some View {
-        //        Picker()
         var form = formObject.getForm();
-        
-        print("ENTERING EDIT FOR " + selectedForm)
         
         return ZStack {
             VStack{
@@ -45,8 +42,6 @@ struct EditFormView: View {
                         self.formObject.setNumSwings(numSwings: Int(self.enteredSwings)!)
                         self.formObject.setRestTime(restTime: Int(self.enteredRestTime)!)
                         if(self.addingNew) {
-//                            print(self.formObject.getParentWorkout().getName())
-//                            self.formObject.getParentWorkout().addForm(form: self.formObject)
                             self.formList.append(self.formObject)
                             self.addingNew = false
                             print("ADDING NEW FORM!")

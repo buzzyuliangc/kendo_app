@@ -12,6 +12,7 @@ import Foundation
 
 class WorkoutFormEntry: NSObject, NSCoding {
     
+    //encode function for NSCoder, used when encoding the WorkoutObjects for UserDefaults
     func encode(with coder: NSCoder) {
         coder.encode(form, forKey:"form")
         coder.encode(frequency, forKey: "frequency")
@@ -21,6 +22,7 @@ class WorkoutFormEntry: NSObject, NSCoding {
         coder.encode(id, forKey: "id")
     }
     
+    //init function for NSCoder, used when encoding hte WorkoutObjects for UserDefaults
     required convenience init(coder: NSCoder) {
         let form = coder.decodeObject(forKey: "form") as! String
         let frequency = coder.decodeDouble(forKey: "frequency")
@@ -32,16 +34,26 @@ class WorkoutFormEntry: NSObject, NSCoding {
         self.init(form: form, frequency: frequency, restTime: restTime, numSwings: numSwings, parentWorkout: parentWorkout, id: id)
     }
     
-    var form: String //form of swing used
-    var frequency: Double //delay between swings in seconds
+    //form of swing used
+    var form: String 
+
+    //delay between swings in seconds
+    var frequency: Double 
+
+    //The speed selection as an index of the speed options list from Constants.swift
     var speedSelection: Int
-    var restTime: Int //rest time after form
+
+    //rest time after form
+    var restTime: Int 
+
+    //the parent workout
     var parentWorkout: WorkoutObject
+
+    //the number of swings for the form
     var numSwings: Int
+
+    //the id of the form object
     var id: Int
-    //TODO: decide how to store the differences between forms,
-    //      if it's something to be looked up from the string or if it's something to be
-    //      contained in it's own data structure
     
 //    init() {
 //        self.form = Constants.defaultForm
@@ -51,6 +63,7 @@ class WorkoutFormEntry: NSObject, NSCoding {
 //        self.speedSelection = Constants.defaultSpeedSelections
 //    }
     
+    //inits the WorkoutFormEntry from the given values
     init(form: String, frequency: Double, restTime: Int, numSwings: Int, parentWorkout: WorkoutObject, id:Int) {
         self.form = form;
         self.frequency = frequency
@@ -61,6 +74,7 @@ class WorkoutFormEntry: NSObject, NSCoding {
         self.speedSelection = Constants.defaultSpeedSelection
     }
     
+    //inits a WorkoutFormEntry as a copy of a given WorkoutFormEntry
     init(fromWorkoutFormEntry: WorkoutFormEntry) {
         self.form = fromWorkoutFormEntry.getForm()
         self.frequency = fromWorkoutFormEntry.getFrequency()
@@ -71,6 +85,7 @@ class WorkoutFormEntry: NSObject, NSCoding {
         self.id = fromWorkoutFormEntry.getId()
     }
     
+    //getters and setters
     func setSpeedSelection(speedSelection: Int) {
         self.speedSelection = speedSelection
     }
@@ -90,7 +105,7 @@ class WorkoutFormEntry: NSObject, NSCoding {
     func setForm(form: String) {
         self.form = form
     }
-    
+
     func getForm() -> String {
         return self.form
     }

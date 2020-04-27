@@ -17,28 +17,71 @@ import Foundation
 
 class ActiveWorkoutStore: ObservableObject {
     //var didChange = Some kind of publisher
+    //The workout object of the current workout
     var workout: WorkoutObject
+
+    //The timer for the active workout
     var timer = Timer()
+
+    //The audio player class for playing audio counts
     var counterAudioPlayer = CounterAudioPlayer()
+
+    //The index of the current form in the workout's form list
     @Published var formIndex = 0
+
+    //The active form being counted out
     @Published var activeForm: WorkoutFormEntry
+
+    //Bool for whether the workout is active
     @Published var active: Bool = false
+
+    //String for the name of the current active form
     @Published var formName = ""
+
+    //The number of swings performed
     @Published var swingNum = 0
+
+    //The max number of swings for the current form
     @Published var swingMax = 0
+
+    //The current resting state for the workout
     @Published var resting: Bool = false
+
+    //The time spent in the current rest state
     @Published var restTime = 0
+
+    //The wait time between full swings
     @Published var swingWait = 0.0
+
+    //The total amount of elapsed time
     @Published var elapsedTime = 0.0
+
+    //The amount of running time for the current state of the workout
     @Published var runningTime = 0.0
+
+    //The number of forms for the workout
     @Published var numForms = 0
+
+    //The index of the current sub-swing in the current full-swing
     @Published var subSwingIndex = 0
+
+    //The count of sub-swings
     @Published var subSwingCount = 1
+
+    //The amount of time to wait between sub-swings for the current form
     @Published var subSwingWait = 0.0
+
+    //Similar to running time but for the sub-swing
     @Published var runningSubSwingTime = 0.0
+
+    //The actual id of the current sub-swing
     @Published var subSwing = 1
+
+    //Whether the workout is done
     @Published var done: Bool = false
     
+
+    //inits the variables, loading values from the workout object when needed
     init(workout: WorkoutObject) {
         self.workout = workout
         self.formIndex = 0
@@ -63,6 +106,7 @@ class ActiveWorkoutStore: ObservableObject {
         loadForm(newForm: workout.getForm(formIndex: 0))
     }
     
+    //Updates necessary values from the new form object to be loaded
     func loadForm(newForm: WorkoutFormEntry) {
         self.activeForm = newForm
         self.formName = newForm.getForm()
@@ -82,14 +126,21 @@ class ActiveWorkoutStore: ObservableObject {
         
     }
     
+    //increments the swing
     func incSwing() {
+
+        //resets the values associated with the subswings
         resetSubSwing()
+
+        //If the swing number is below the max of the swings, increment and play the count audio
         if(self.swingNum < self.swingMax) {
             self.swingNum += 1
             
             counterAudioPlayer.playCount(num: self.swingNum)
             
         }
+        //else it's the end of the form and a rest period should be entered
+        //or the workout should end
         else {
             if(self.formIndex < workout.getForms().count){
                 enterRest()
@@ -100,25 +151,28 @@ class ActiveWorkoutStore: ObservableObject {
         }
     }
     
+    //resets the values associated with the subswing
     func resetSubSwing() {
         self.subSwingIndex = 0
         let subSwingArray = Constants.formSubSwings[self.formName] ?? [1]
         self.subSwing = subSwingArray[self.subSwingIndex]
     }
     
+    //increments the subswing
     func incSubSwing() {
         self.subSwingIndex += 1
         
         let subSwingArray = Constants.formSubSwings[self.formName] ?? [1]
-        print(self.formName)
-        print(subSwingArray)
-        print(subSwingIndex)
+        //print(self.formName)
+        //print(subSwingArray)
+        //print(subSwingIndex)
         if(self.subSwingIndex < subSwingArray.count) {
             self.subSwing = subSwingArray[self.subSwingIndex]
         }
         self.runningSubSwingTime = 0.0
     }
     
+    //starts the timer (and therefore the workout) to call increment at the given step size
     func start(inc: Double) {
         if(!self.timer.isValid) {
             self.timer = Timer.scheduledTimer(withTimeInterval: inc, repeats: true) { timer in
@@ -127,22 +181,26 @@ class ActiveWorkoutStore: ObservableObject {
         }
     }
     
+    //starts the workout with a default 0.1s step size
     func start() {
         start(inc: 0.1)
     }
     
+    //enters the rest state
     func enterRest() {
         self.runningTime = 0.0
         self.resting = true
         self.subSwing = -1
     }
     
+    //ends the rest state and calls increment on the form
     func endRest() {
         self.runningTime = 0.0
         self.resting = false
         incForm()
     }
     
+    //increments the form, loading the new one, ends workout if there's none to load
     func incForm() {
         if(self.formIndex < workout.getForms().count) {
             self.formIndex += 1
@@ -154,6 +212,7 @@ class ActiveWorkoutStore: ObservableObject {
         }
     }
     
+    //increments the time by a given step size, triggers events at various wait values
     func incTime(inc: Double) {
         if(self.active) {
             elapsedTime += inc
@@ -172,16 +231,19 @@ class ActiveWorkoutStore: ObservableObject {
         }
     }
     
+    //increments time by a fixed 0.1s step size
     func incTime() {
         incTime(inc: 0.1)
     }
     
+    //ends the workout, stopping the timer and setting active and done values
     func endWorkout() {
         timer.invalidate()
         self.active = false
         self.done = true
     }
     
+    //toggles the workout to paused or unpaused
     func toggle() {
         if(self.active) {
             self.active = false
